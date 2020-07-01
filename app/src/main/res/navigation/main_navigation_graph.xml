@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/main_navigation_graph"
+    app:startDestination="@id/viewProgressFragment">
+
+    <fragment
+        android:id="@+id/viewProgressFragment"
+        android:name="com.dorokhov.hab.ui.ViewProgressFragment"
+        android:label="ViewProgressFragment" >
+        <action
+            android:id="@+id/action_viewProgressFragment_to_createNewCycleFragment"
+            app:destination="@id/createNewCycleFragment" />
+        <action
+            android:id="@+id/action_viewProgressFragment_to_editCycleFragment"
+            app:destination="@id/editCycleFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/createNewCycleFragment"
+        android:name="com.dorokhov.hab.ui.CreateNewCycleFragment"
+        android:label="CreateNewCycleFragment" >
+        <action
+            android:id="@+id/action_createNewCycleFragment_to_addHabitFromListOfHabits"
+            app:destination="@id/addHabitFromListOfHabits" />
+        <action
+            android:id="@+id/action_createNewCycleFragment_to_createNewHabitFragment"
+            app:destination="@id/createNewHabitFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editCycleFragment"
+        android:name="com.dorokhov.hab.ui.EditCycleFragment"
+        android:label="EditCycleFragment" >
+        <action
+            android:id="@+id/action_editCycleFragment_to_addHabitFromListOfHabits"
+            app:destination="@id/addHabitFromListOfHabits" />
+        <action
+            android:id="@+id/action_editCycleFragment_to_createNewHabitFragment"
+            app:destination="@id/createNewHabitFragment" />
+        <action
+            android:id="@+id/action_editCycleFragment_to_editHabitFragment"
+            app:destination="@id/editHabitFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addHabitFromListOfHabits"
+        android:name="com.dorokhov.hab.ui.AddHabitFromListOfHabits"
+        android:label="AddHabitFromListOfHabits" />
+    <fragment
+        android:id="@+id/createNewHabitFragment"
+        android:name="com.dorokhov.hab.ui.CreateNewHabitFragment"
+        android:label="CreateNewHabitFragment" />
+    <fragment
+        android:id="@+id/editHabitFragment"
+        android:name="com.dorokhov.hab.ui.EditHabitFragment"
+        android:label="EditHabitFragment" />
+</navigation>
