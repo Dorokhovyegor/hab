@@ -1,9 +1,10 @@
-package com.dorokhov.hab.ui
+package com.dorokhov.hab.ui.fragments
 
 import android.os.Bundle
 import android.view.*
 import androidx.navigation.fragment.findNavController
 import com.dorokhov.hab.R
+import com.dorokhov.hab.ui.fragments.BaseFragment
 import com.google.android.material.datepicker.MaterialDatePicker
 import kotlinx.android.synthetic.main.create_new_cycle_layout.*
 

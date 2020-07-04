@@ -5,7 +5,7 @@
 
     <fragment
         android:id="@+id/viewProgressFragment"
-        android:name="com.dorokhov.hab.ui.ViewProgressFragment"
+        android:name="com.dorokhov.hab.ui.fragments.ViewProgressFragment"
         android:label="ViewProgressFragment" >
         <action
             android:id="@+id/action_viewProgressFragment_to_createNewCycleFragment"
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/createNewCycleFragment"
-        android:name="com.dorokhov.hab.ui.CreateNewCycleFragment"
+        android:name="com.dorokhov.hab.ui.fragments.CreateNewCycleFragment"
         android:label="CreateNewCycleFragment" >
         <action
             android:id="@+id/action_createNewCycleFragment_to_addHabitFromListOfHabits"
@@ -27,7 +27,7 @@
     </fragment>
     <fragment
         android:id="@+id/editCycleFragment"
-        android:name="com.dorokhov.hab.ui.EditCycleFragment"
+        android:name="com.dorokhov.hab.ui.fragments.EditCycleFragment"
         android:label="EditCycleFragment" >
         <action
             android:id="@+id/action_editCycleFragment_to_addHabitFromListOfHabits"
@@ -41,14 +41,14 @@
     </fragment>
     <fragment
         android:id="@+id/addHabitFromListOfHabits"
-        android:name="com.dorokhov.hab.ui.AddHabitFromListOfHabits"
+        android:name="com.dorokhov.hab.ui.fragments.AddHabitFromListOfHabitsFragment"
         android:label="AddHabitFromListOfHabits" />
     <fragment
         android:id="@+id/createNewHabitFragment"
-        android:name="com.dorokhov.hab.ui.CreateNewHabitFragment"
+        android:name="com.dorokhov.hab.ui.fragments.CreateNewHabitFragment"
         android:label="CreateNewHabitFragment" />
     <fragment
         android:id="@+id/editHabitFragment"
-        android:name="com.dorokhov.hab.ui.EditHabitFragment"
+        android:name="com.dorokhov.hab.ui.fragments.EditHabitFragment"
         android:label="EditHabitFragment" />
 </navigation>

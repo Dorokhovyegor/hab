@@ -5,8 +5,8 @@ import androidx.room.PrimaryKey
 
 @Entity
 data class Habit(
-    @PrimaryKey val habitId: Int,
-    val cycleId: Int,
+    @PrimaryKey(autoGenerate = true) val habitId: Int?,
+    val cycleId: Int?,
     val name: String,
     val description: String,
     val monday: Boolean,

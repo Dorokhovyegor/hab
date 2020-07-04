@@ -4,4 +4,13 @@
     <string name="edit_text_hint_name_of_the_cycle">Название цикла</string>
     <string name="edit_text_hint_name_of_the_habit">Название привычки</string>
     <string name="menu_create_cycle">Создать цикл</string>
+    <string name="edit_text_hint_description_of_the_habit">Описание привычки</string>
+    <string name="chip_text_monday">П</string>
+    <string name="chip_text_tuesday">В</string>
+    <string name="chip_text_wednesday">С</string>
+    <string name="chip_text_thursday">Ч</string>
+    <string name="chip_text_friday">П</string>
+    <string name="chip_day_saturday">С</string>
+    <string name="chip_day_sunday">В</string>
+    <string name="button_text_create_new_habit">Создать привычку</string>
 </resources>

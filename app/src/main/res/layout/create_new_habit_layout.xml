@@ -10,8 +10,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:hint="@string/edit_text_hint_name_of_the_habit"
-        app:endIconDrawable="@drawable/ic_date_range"
-        app:endIconMode="custom"
+        app:endIconMode="clear_text"
         app:helperText="Например, 'Читать 25 минут в день'"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -30,13 +29,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:hint="@string/edit_text_hint_name_of_the_habit"
-        app:endIconDrawable="@drawable/ic_date_range"
-        app:endIconMode="custom"
-        app:helperText="Например, 'Читать 25 минут в день'"
+        android:hint="@string/edit_text_hint_description_of_the_habit"
+        app:endIconMode="clear_text"
+        app:helperText="Например, 'Каждый день просыпаться в 5:30 утра и принимать контрастный душ'"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@id/nameHabitInputLayout">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/descriptionEditText"
@@ -47,58 +45,92 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.chip.ChipGroup
-        android:layout_marginTop="24dp"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="12dp"
+        android:layout_marginTop="24dp"
+        app:chipSpacingHorizontal="1dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/descriptionInputLayout">
 
         <com.google.android.material.chip.Chip
+            android:id="@+id/chipMonday"
             style="@style/Widget.MaterialComponents.Chip.Filter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="П"/>
+            android:text="@string/chip_text_monday"
+            android:textAlignment="center"
+            app:checkedIconEnabled="false" />
 
         <com.google.android.material.chip.Chip
+            android:id="@+id/chipTuesday"
             style="@style/Widget.MaterialComponents.Chip.Filter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="В"/>
-
-
-        <com.google.android.material.chip.Chip
-            style="@style/Widget.MaterialComponents.Chip.Filter"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="С"/>
-
-
-        <com.google.android.material.chip.Chip
-            style="@style/Widget.MaterialComponents.Chip.Filter"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Ч"/>
+            android:text="@string/chip_text_tuesday"
+            android:textAlignment="center"
+            app:checkedIconEnabled="false" />
 
 
         <com.google.android.material.chip.Chip
+            android:id="@+id/chipWednesday"
             style="@style/Widget.MaterialComponents.Chip.Filter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="П"/>
+            android:text="@string/chip_text_wednesday"
+            android:textAlignment="center"
+            app:checkedIconEnabled="false" />
 
 
         <com.google.android.material.chip.Chip
+            android:id="@+id/chipThursday"
             style="@style/Widget.MaterialComponents.Chip.Filter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="С"/>
+            android:text="@string/chip_text_thursday"
+            android:textAlignment="center"
+            app:checkedIconEnabled="false" />
 
 
         <com.google.android.material.chip.Chip
+            android:id="@+id/chipFriday"
             style="@style/Widget.MaterialComponents.Chip.Filter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="В"/>
+            android:text="@string/chip_text_friday"
+            android:textAlignment="center"
+            app:checkedIconEnabled="false" />
+
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chipSaturday"
+            style="@style/Widget.MaterialComponents.Chip.Filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/chip_day_saturday"
+            android:textAlignment="center"
+            app:checkedIconEnabled="false" />
+
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chipSunday"
+            style="@style/Widget.MaterialComponents.Chip.Filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/chip_day_sunday"
+            android:textAlignment="center"
+            app:checkedIconEnabled="false" />
 
     </com.google.android.material.chip.ChipGroup>
+
+    <Button
+        android:id="@+id/createHabitButton"
+        style="@style/MaterialButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="@string/button_text_create_new_habit"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

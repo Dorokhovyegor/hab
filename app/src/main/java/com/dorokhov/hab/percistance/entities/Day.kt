@@ -9,11 +9,12 @@ data class Day(
     @PrimaryKey val dayId: Int,
     val habitId: Int,
     val date: String,
-    val result: Result
+    val result: Int
 )
 
+/*
 enum class Result {
-    OK,
-    FAILURE,
-    NEUTRAL_FAILURE
-}
+    OK, 1
+    FAILURE, 0
+    NEUTRAL_FAILURE 2
+}*/

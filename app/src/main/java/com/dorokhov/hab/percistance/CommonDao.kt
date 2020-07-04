@@ -13,9 +13,10 @@ interface CommonDao {
     suspend fun getHabitsInCurrentCycle(): List<CycleWithHabits>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertNewCycle(cycle: Cycle): Int
+    suspend fun insertNewCycle(cycle: Cycle): Long
 
-    suspend fun insertDaysToHabitWithId(day: List<Day>): Int
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertDaysToHabitWithId(day: List<Day>): List<Long>
 
     @Update
     suspend fun updateDayWithId(day: Day): Int
