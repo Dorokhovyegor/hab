@@ -1,4 +1,4 @@
-package com.dorokhov.hab.ui.fragments.datastate
+package com.dorokhov.hab.ui.fragments.datastate.createhabit
 
 sealed class CreateNewHabitStateEvent {
 

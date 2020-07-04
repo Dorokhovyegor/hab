@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="120dp"
+    android:layout_marginHorizontal="16dp"
+    android:layout_marginVertical="8dp"
+    app:cardCornerRadius="8dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/habitName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="8dp"
+            android:ellipsize="end"
+            android:lines="1"
+            android:text="Название привычки"
+            android:textColor="#535353"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/habitDescription"
+            android:layout_width="0dp"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="2dp"
+            android:textSize="10sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/habitName"
+            android:layout_height="wrap_content" />
+
+        <com.google.android.material.chip.ChipGroup
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="12dp"
+            android:layout_marginTop="8dp"
+            app:chipSpacingHorizontal="1dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/habitDescription">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipMonday"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/chip_text_monday"
+                android:textAlignment="center"
+                app:checkedIconEnabled="false" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipTuesday"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/chip_text_tuesday"
+                android:textAlignment="center"
+                app:checkedIconEnabled="false" />
+
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipWednesday"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/chip_text_wednesday"
+                android:textAlignment="center"
+                app:checkedIconEnabled="false" />
+
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipThursday"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/chip_text_thursday"
+                android:textAlignment="center"
+                app:checkedIconEnabled="false" />
+
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipFriday"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/chip_text_friday"
+                android:textAlignment="center"
+                app:checkedIconEnabled="false" />
+
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipSaturday"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/chip_day_saturday"
+                android:textAlignment="center"
+                app:checkedIconEnabled="false" />
+
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipSunday"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/chip_day_sunday"
+                android:textAlignment="center"
+                app:checkedIconEnabled="false" />
+
+        </com.google.android.material.chip.ChipGroup>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

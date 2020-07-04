@@ -6,9 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
 import com.dorokhov.hab.R
-import com.dorokhov.hab.ui.fragments.datastate.CreateNewHabitStateEvent
+import com.dorokhov.hab.ui.fragments.datastate.createhabit.CreateNewHabitStateEvent
 import com.dorokhov.hab.ui.viewmodels.CreateHabitViewModel
 import kotlinx.android.synthetic.main.create_new_habit_layout.*
 
@@ -34,7 +33,8 @@ class CreateNewHabitFragment : BaseFragment() {
 
     private fun initListeners() {
         createHabitButton.setOnClickListener {
-            createNewHabitViewModel.setStateEvent(CreateNewHabitStateEvent.CreateHabitEvent(
+            createNewHabitViewModel.setStateEvent(
+                CreateNewHabitStateEvent.CreateHabitEvent(
                 nameHabitEditText.text.toString(),
                 descriptionEditText.text.toString(),
                 chipMonday.isChecked,

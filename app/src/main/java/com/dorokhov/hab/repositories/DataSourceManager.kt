@@ -11,7 +11,7 @@ import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.Dispatchers.Main
 
 @InternalCoroutinesApi
-abstract class NetworkBoundResource<CacheObject, ViewStateType> {
+abstract class DataSourceManager<ViewStateType> {
 
     private val TAG = "AppDebug"
     protected val result = MediatorLiveData<DataState<ViewStateType>>()

@@ -1,15 +1,18 @@
 package com.dorokhov.hab.repositories.habit
 
-import android.util.Log
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.map
+import androidx.lifecycle.switchMap
 import com.dorokhov.hab.percistance.HabitDao
 import com.dorokhov.hab.percistance.entities.Habit
+import com.dorokhov.hab.repositories.DataSourceManager
 import com.dorokhov.hab.repositories.JobManager
-import com.dorokhov.hab.repositories.NetworkBoundResource
 import com.dorokhov.hab.ui.DataState
 import com.dorokhov.hab.ui.Response
 import com.dorokhov.hab.ui.ResponseType
-import com.dorokhov.hab.ui.fragments.datastate.CreateNewHabitViewState
+import com.dorokhov.hab.ui.fragments.datastate.HabitFields
+import com.dorokhov.hab.ui.fragments.datastate.ViewHabitViewState
+import com.dorokhov.hab.ui.fragments.datastate.createhabit.CreateNewHabitViewState
 import kotlinx.coroutines.InternalCoroutinesApi
 import kotlinx.coroutines.Job
 import javax.inject.Inject
@@ -32,7 +35,7 @@ constructor(
         saturday: Boolean,
         sunday: Boolean
     ): LiveData<DataState<CreateNewHabitViewState>> {
-        return object : NetworkBoundResource<Habit, CreateNewHabitViewState>() {
+        return object : DataSourceManager<CreateNewHabitViewState>() {
 
             override suspend fun loadFromCache() {
                 val result = habitDao.insertNewHabit(
@@ -71,8 +74,19 @@ constructor(
         }.asLiveData()
     }
 
-  /*  fun getAllHabits(): LiveData<DataState<>> {
+    @InternalCoroutinesApi
+    fun getAllHabits(): LiveData<DataState<ViewHabitViewState>> {
+        return object : DataSourceManager<ViewHabitViewState>() {
+            override suspend fun loadFromCache() {
+                habitDao.getHabits().let { habits ->
+                    onCompleteJob(DataState.data(ViewHabitViewState(HabitFields(habits)), null))
+                }
+            }
 
-    }*/
+            override fun setJob(job: Job) {
+                addJob("getAllHabits", job)
+            }
+        }.asLiveData()
+    }
 
 }

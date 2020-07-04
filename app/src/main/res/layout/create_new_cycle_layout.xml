@@ -47,10 +47,18 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/addNewHabit"
-        android:text="Добавить привычку"
+        android:text="Создать привычку"
         android:layout_margin="24dp"
         android:layout_width="match_parent"
         app:layout_constraintTop_toBottomOf="@id/nameInputLayout"
+        android:layout_height="wrap_content"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/addHabitFromListOfHabits"
+        android:text="Добавить из списка привычек"
+        android:layout_margin="24dp"
+        android:layout_width="match_parent"
+        app:layout_constraintTop_toBottomOf="@id/addNewHabit"
         android:layout_height="wrap_content"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

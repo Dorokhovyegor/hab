@@ -5,8 +5,8 @@ import androidx.lifecycle.liveData
 import com.dorokhov.hab.repositories.habit.HabitRepository
 import com.dorokhov.hab.ui.DataState
 import com.dorokhov.hab.ui.Loading
-import com.dorokhov.hab.ui.fragments.datastate.CreateNewHabitStateEvent
-import com.dorokhov.hab.ui.fragments.datastate.CreateNewHabitViewState
+import com.dorokhov.hab.ui.fragments.datastate.createhabit.CreateNewHabitStateEvent
+import com.dorokhov.hab.ui.fragments.datastate.createhabit.CreateNewHabitViewState
 import kotlinx.coroutines.InternalCoroutinesApi
 import javax.inject.Inject
 

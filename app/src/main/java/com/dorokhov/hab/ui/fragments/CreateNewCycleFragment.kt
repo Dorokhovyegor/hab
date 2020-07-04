@@ -37,6 +37,10 @@ class CreateNewCycleFragment : BaseFragment() {
         addNewHabit.setOnClickListener {
             findNavController().navigate(R.id.action_createNewCycleFragment_to_createNewHabitFragment)
         }
+
+        addHabitFromListOfHabits.setOnClickListener {
+            findNavController().navigate(R.id.action_createNewCycleFragment_to_addHabitFromListOfHabits)
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
