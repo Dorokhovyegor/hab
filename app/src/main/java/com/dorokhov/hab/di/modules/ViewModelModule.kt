@@ -2,6 +2,7 @@ package com.dorokhov.hab.di.modules
 
 import androidx.lifecycle.ViewModel
 import com.dorokhov.hab.di.ViewModelKey
+import com.dorokhov.hab.ui.viewmodels.CreateCycleViewModel
 import com.dorokhov.hab.ui.viewmodels.CreateHabitViewModel
 import com.dorokhov.hab.ui.viewmodels.HabitListViewModel
 import dagger.Binds
@@ -20,5 +21,10 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(HabitListViewModel::class)
     abstract fun bindHabitListViewModel(habitListViewModel: HabitListViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(CreateCycleViewModel::class)
+    abstract fun bindCreateCycleViewModel(createCycleViewModel: CreateCycleViewModel): ViewModel
 
 }

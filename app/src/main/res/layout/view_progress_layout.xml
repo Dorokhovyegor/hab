@@ -5,6 +5,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <me.zhanghai.android.materialprogressbar.MaterialProgressBar
+        android:id="@+id/horizontalProgressBar"
+        style="@style/Widget.MaterialProgressBar.ProgressBar.Horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        app:mpb_indeterminateTint="@color/colorSecondary"
+        android:layout_gravity="bottom"
+        android:indeterminate="true"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent"
+        app:mpb_progressStyle="horizontal"
+        app:mpb_showProgressBackground="false"
+        app:mpb_useIntrinsicPadding="false" />
+
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -14,11 +28,7 @@
         android:layout_margin="16dp"
         android:layout_height="350dp">
 
-        <TextView
-            android:text="Здесь будет отображаться прогресс"
-            android:layout_gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+
 
     </com.google.android.material.card.MaterialCardView>
 

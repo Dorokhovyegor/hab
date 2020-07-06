@@ -9,7 +9,7 @@ import com.dorokhov.hab.percistance.entities.*
         Cycle::class,
         Day::class,
         Habit::class
-    ], version = 1
+    ], version = 3
 )
 abstract class AppDataBase : RoomDatabase() {
 

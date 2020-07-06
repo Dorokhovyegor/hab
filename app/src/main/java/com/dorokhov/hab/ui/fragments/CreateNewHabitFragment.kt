@@ -9,7 +9,9 @@ import androidx.lifecycle.ViewModelProvider
 import com.dorokhov.hab.R
 import com.dorokhov.hab.ui.fragments.datastate.createhabit.CreateNewHabitStateEvent
 import com.dorokhov.hab.ui.viewmodels.CreateHabitViewModel
+import kotlinx.android.synthetic.main.create_new_cycle_layout.*
 import kotlinx.android.synthetic.main.create_new_habit_layout.*
+import kotlinx.android.synthetic.main.create_new_habit_layout.horizontalProgressBar
 
 class CreateNewHabitFragment : BaseFragment() {
 
@@ -48,9 +50,14 @@ class CreateNewHabitFragment : BaseFragment() {
         }
     }
 
+    override fun showLoadingState(visible: Boolean) {
+        if (visible) horizontalProgressBar.visibility = View.VISIBLE else horizontalProgressBar.visibility =
+            View.GONE
+    }
     private fun subscribeObserver() {
         createNewHabitViewModel.dataState.observe(viewLifecycleOwner, Observer { dataState ->
             // state change listener
+            onDataStateChanged(dataState)
 
         })
     }

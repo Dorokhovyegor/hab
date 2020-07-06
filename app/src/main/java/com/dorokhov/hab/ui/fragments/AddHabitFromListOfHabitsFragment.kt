@@ -35,7 +35,7 @@ class AddHabitFromListOfHabitsFragment : BaseFragment() {
 
     private fun subscribeObserver() {
         habitListViewModel.dataState.observe(viewLifecycleOwner, Observer { dataState ->
-            // handle changing datastate
+            onDataStateChanged(dataState)
             dataState?.data?.data?.getContentIfNotHandled()?.let { viewState ->
                 habitListViewModel.setViewState(viewState)
             }
@@ -44,12 +44,16 @@ class AddHabitFromListOfHabitsFragment : BaseFragment() {
         habitListViewModel.viewState.observe(viewLifecycleOwner, Observer {viewState ->
             val adapterRecView = HabitRecyclerViewAdapter()
             adapterRecView.setHabits(viewState.habitFields.habits)
-
             habitsRecyclerView?.apply {
                 layoutManager = LinearLayoutManager(context)
                 adapter = adapterRecView
             }
         })
+    }
+
+    override fun showLoadingState(visible: Boolean) {
+        if (visible) horizontalProgressBar.visibility = View.VISIBLE else horizontalProgressBar.visibility =
+            View.GONE
     }
 
 }

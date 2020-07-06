@@ -26,6 +26,7 @@ abstract class DataSourceManager<ViewStateType> {
 
     private fun doCacheRequest() {
         coroutineScope.launch {
+            delay(3000)
             loadFromCache()
         }
     }

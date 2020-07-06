@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.dorokhov.hab.R
-import com.dorokhov.hab.ui.fragments.BaseFragment
 import kotlinx.android.synthetic.main.view_progress_layout.*
 
 class ViewProgressFragment : BaseFragment() {
@@ -24,5 +23,10 @@ class ViewProgressFragment : BaseFragment() {
         addNewCycle.setOnClickListener {
             findNavController().navigate(R.id.action_viewProgressFragment_to_createNewCycleFragment)
         }
+    }
+
+    override fun showLoadingState(visible: Boolean) {
+        if (visible) horizontalProgressBar.visibility =
+            View.VISIBLE else horizontalProgressBar.visibility = View.GONE
     }
 }
