@@ -13,4 +13,6 @@
     <string name="chip_day_saturday">С</string>
     <string name="chip_day_sunday">В</string>
     <string name="button_text_create_new_habit">Создать привычку</string>
+    <string name="txt_view_amount_of_habits_in_the_cycle">Количетсво привычек в цикле: %1$d</string>
+    <string name="txt_view_amount_of_days_to_the_cycle">Количетсво дней до конца цикла: %1$d</string>
 </resources>

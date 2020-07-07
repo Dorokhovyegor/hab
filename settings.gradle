@@ -1,2 +1,3 @@
 rootProject.name='Hab'
 include ':app'
+include ':cycleprogress'

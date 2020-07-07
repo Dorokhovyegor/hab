@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="failureBackground">#eb4034</color>
+    <color name="notFullCompleteBackground">#ebba34</color>
+    <color name="fullCompleteBackground">#34eb8c</color>
+    <color name="uncheckedBackground">#ededed</color>
+</resources>

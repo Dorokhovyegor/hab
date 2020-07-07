@@ -7,4 +7,5 @@
     <color name="colorOnSecondary">#FFFFFF</color>
     <color name="colorOnSurface">#480060</color>
     <color name="colorSurface">#FFEBF1</color>
+    <color name="black">#000</color>
 </resources>
