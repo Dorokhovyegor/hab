@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.dorokhov.hab.R
-import com.dorokhov.cycleprogress.CycleProgressView
+import com.dorokhov.hab.utils.getRandomCell
 import kotlinx.android.synthetic.main.view_progress_layout.*
 
 class ViewProgressFragment : BaseFragment() {
@@ -25,15 +25,6 @@ class ViewProgressFragment : BaseFragment() {
             findNavController().navigate(R.id.action_viewProgressFragment_to_createNewCycleFragment)
         }
 
-        indicatorDayContainer.addView(
-            CycleProgressView(
-                requireContext(),
-                null,
-                0
-            ).apply {
-                typeChecked = 1
-            }
-        )
     }
 
     override fun showLoadingState(visible: Boolean) {

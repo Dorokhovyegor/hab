@@ -15,6 +15,9 @@ constructor(
     defStyleAttr: Int = 0
 ) : View(context, attributeSet, defStyleAttr) {
 
+    constructor(context: Context) : this(context, null)
+    constructor(context: Context, attributeSet: AttributeSet) : this(context, attributeSet, 0)
+
     private val paintColor = Paint(Paint.ANTI_ALIAS_FLAG)
     private val backgroundAreaColorUnchecked = context.getColor(R.color.uncheckedBackground)
     private val backgroundAreaColorFailure = context.getColor(R.color.failureBackground)
@@ -25,6 +28,8 @@ constructor(
     var crossDrawable: Drawable
     var checkDrawable: Drawable
 
+    val scale = resources.displayMetrics.density
+    var sizeInDp: Float = 20 * scale
     // 0 - unchecked
     // 1 - completed
     // 2 - notFullCompleted
@@ -36,6 +41,17 @@ constructor(
         }
 
     init {
+        context.theme.obtainStyledAttributes(
+            attributeSet,
+            R.styleable.CycleProgressView, 0, 0
+        ).apply {
+            try {
+                sizeInDp = getDimension(R.styleable.CycleProgressView_sizeInDp, 0f)
+                typeChecked = getInt(R.styleable.CycleProgressView_checkType, 0)
+            } finally {
+                recycle()
+            }
+        }
         crossDrawable = context.resources.getDrawable(R.drawable.ic_failure, null)
         checkDrawable = context.resources.getDrawable(R.drawable.ic_done, null)
     }
@@ -43,8 +59,7 @@ constructor(
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
         paintColor.style = Paint.Style.FILL
-        val scale = resources.displayMetrics.density
-        val rectBackground = Rect(0, 0, (20 * scale).toInt(), (20 * scale).toInt())
+        val rectBackground = Rect(0, 0, (sizeInDp).toInt(), (sizeInDp).toInt())
         when (typeChecked) {
             UNCHECKED -> {
                 paintColor.color = backgroundAreaColorUnchecked
@@ -69,14 +84,15 @@ constructor(
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec)
-    /*    val scale = resources.displayMetrics.density
-        setPadding(
-            (4 * scale).toInt(),
-            (4 * scale).toInt(),
-            (4 * scale).toInt(),
-            (4 * scale).toInt()
-        )*/
+        val minw: Int = paddingLeft + paddingRight + suggestedMinimumWidth + sizeInDp.toInt()
+        val w: Int = View.resolveSizeAndState(minw, widthMeasureSpec, 0)
+        val minh: Int = View.MeasureSpec.getSize(w) + paddingBottom + paddingTop + sizeInDp.toInt()
+        val h: Int = View.resolveSizeAndState(
+            View.MeasureSpec.getSize(w),
+            heightMeasureSpec,
+            0
+        )
+        setMeasuredDimension(w, h)
     }
 
     private fun drawCross(canvas: Canvas?) {

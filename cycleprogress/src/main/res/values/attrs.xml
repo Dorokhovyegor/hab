@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="CycleProgressView">
+        <attr name="sizeInDp" format="dimension" />
+        <attr name="checkType" format="enum">
+            <enum name="unchecked" value="0" />
+            <enum name="completed" value="1" />
+            <enum name="notFullCompleted" value="2" />
+            <enum name="failure" value="3" />
+        </attr>
+    </declare-styleable>
+</resources>
