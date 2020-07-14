@@ -45,7 +45,7 @@ class ViewProgressFragment : BaseFragment() {
         viewProgressViewModel.viewState.observe(viewLifecycleOwner, Observer { viewState ->
             if (viewState.listOfTask.taskList.isNotEmpty()) {
                 // todo set to list
-                
+
             }
         })
     }
