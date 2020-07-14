@@ -22,6 +22,12 @@ interface CommonDao {
     @Update
     suspend fun updateDayWithId(day: Day): Int
 
+    // todo make sure this return only one note
+    @Query("""
+        SELECT * FROM Cycle
+    """)
+    suspend fun getCycle(): Cycle
+
     @Query("""
         SELECT * From Day 
         WHERE Day.habitId = (SELECT Habit.habitId FROM Habit
