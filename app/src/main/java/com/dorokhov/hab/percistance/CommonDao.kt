@@ -22,4 +22,12 @@ interface CommonDao {
     @Update
     suspend fun updateDayWithId(day: Day): Int
 
+    @Query("""
+        SELECT * From Day 
+        WHERE Day.habitId = (SELECT Habit.habitId FROM Habit
+        WHERE Habit.cycleId = (SELECT cycleId FROM Cycle))
+        AND Day.date =:date
+    """)
+    suspend fun getDaysForCurrentCycleInCurrentDate(date: String): List<Day>
+
 }

@@ -51,6 +51,6 @@ constructor(
         }.asLiveData()
     }
 
- /*   fun getCurrentCycleInfo(): LiveData<DataState<>>*/
+    fun getCurrentCycleInfo(): LiveData<DataState<>>
 
 }
