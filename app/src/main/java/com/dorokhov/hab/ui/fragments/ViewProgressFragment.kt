@@ -8,6 +8,9 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.dorokhov.hab.R
+import com.dorokhov.hab.ui.fragments.datastate.viewprogress.CommonProgressFields
+import com.dorokhov.hab.ui.fragments.datastate.viewprogress.ViewProgressStateEvent
+import com.dorokhov.hab.ui.fragments.datastate.viewprogress.ViewProgressViewState
 import com.dorokhov.hab.ui.viewmodels.ViewProgressViewModel
 import kotlinx.android.synthetic.main.view_progress_layout.*
 
@@ -28,8 +31,12 @@ class ViewProgressFragment : BaseFragment() {
         viewProgressViewModel =
             ViewModelProvider(this, providerFactory)[ViewProgressViewModel::class.java]
         subscribeObserver()
+        viewProgressViewModel.setStateEvent(ViewProgressStateEvent.RequestCommonInformation("21-05-2020"))
         addNewCycle.setOnClickListener {
             findNavController().navigate(R.id.action_viewProgressFragment_to_createNewCycleFragment)
+        }
+        editCycle.setOnClickListener {
+
         }
     }
 
@@ -44,9 +51,15 @@ class ViewProgressFragment : BaseFragment() {
         viewProgressViewModel.viewState.observe(viewLifecycleOwner, Observer { viewState ->
             if (viewState.listOfTask.taskList.isNotEmpty()) {
                 // todo set to list
-
             }
+            attemptToSetContent(viewState.commonProgressFields)
         })
+    }
+
+    private fun attemptToSetContent(commonInfo: CommonProgressFields) {
+        nameCycle.text = commonInfo.nameOfTheCycle
+        amountOfHabits.text = commonInfo.amountOfHabits
+        daysToEnd.text = commonInfo.daysToTheEndOfTheCycle
     }
 
     override fun showLoadingState(visible: Boolean) {

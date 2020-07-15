@@ -5,9 +5,7 @@ import androidx.lifecycle.liveData
 import com.dorokhov.hab.percistance.entities.Day
 import com.dorokhov.hab.repositories.cycle.CycleRepository
 import com.dorokhov.hab.ui.DataState
-import com.dorokhov.hab.ui.fragments.datastate.ViewHabitStateEvent
 import com.dorokhov.hab.ui.fragments.datastate.viewprogress.CommonProgressFields
-import com.dorokhov.hab.ui.fragments.datastate.viewprogress.ListOfTask
 import com.dorokhov.hab.ui.fragments.datastate.viewprogress.ViewProgressStateEvent
 import com.dorokhov.hab.ui.fragments.datastate.viewprogress.ViewProgressViewState
 import kotlinx.coroutines.InternalCoroutinesApi
@@ -27,10 +25,7 @@ constructor(
     override fun handleStateEvent(it: ViewProgressStateEvent): LiveData<DataState<ViewProgressViewState>> {
         when (it) {
             is ViewProgressStateEvent.RequestCommonInformation -> {
-                return cycleRepository.getCommonInfoCycle()
-            }
-            is ViewProgressStateEvent.RequestTasksForThisDay -> {
-                return cycleRepository.getTaskForCurrentDate(it.date)
+                return cycleRepository.getCommonInfoCycle(it.date)
             }
             is ViewProgressStateEvent.None -> {
                 return liveData {  }

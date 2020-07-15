@@ -58,7 +58,6 @@ class CreateNewHabitFragment : BaseFragment() {
         createNewHabitViewModel.dataState.observe(viewLifecycleOwner, Observer { dataState ->
             // state change listener
             onDataStateChanged(dataState)
-
         })
     }
 }

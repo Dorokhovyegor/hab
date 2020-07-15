@@ -5,7 +5,6 @@ import com.dorokhov.hab.di.ViewModelKey
 import com.dorokhov.hab.ui.viewmodels.CreateCycleViewModel
 import com.dorokhov.hab.ui.viewmodels.CreateHabitViewModel
 import com.dorokhov.hab.ui.viewmodels.HabitListViewModel
-import com.dorokhov.hab.ui.viewmodels.ViewCycleViewModel
 import com.dorokhov.hab.ui.viewmodels.ViewProgressViewModel
 import dagger.Binds
 import dagger.Module
