@@ -9,7 +9,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.dorokhov.hab.R
 import com.dorokhov.hab.ui.viewmodels.ViewProgressViewModel
-import com.dorokhov.hab.utils.getRandomCell
 import kotlinx.android.synthetic.main.view_progress_layout.*
 
 class ViewProgressFragment : BaseFragment() {
