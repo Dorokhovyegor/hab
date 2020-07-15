@@ -8,17 +8,13 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.dorokhov.hab.R
-import com.dorokhov.hab.ui.fragments.datastate.viewcycleinfo.ViewCycleStateEvent
-import com.dorokhov.hab.ui.fragments.datastate.viewcycleinfo.ViewCycleViewState
-import com.dorokhov.hab.ui.viewmodels.ViewCycleViewModel
+import com.dorokhov.hab.ui.viewmodels.ViewProgressViewModel
 import com.dorokhov.hab.utils.getRandomCell
 import kotlinx.android.synthetic.main.view_progress_layout.*
 
 class ViewProgressFragment : BaseFragment() {
 
-    val TAG = "YegorDebug"
-
-    lateinit var viewCycleViewModel: ViewCycleViewModel
+    lateinit var viewProgressViewModel: ViewProgressViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -30,25 +26,27 @@ class ViewProgressFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewCycleViewModel = ViewModelProvider(this, providerFactory)[ViewCycleViewModel::class.java]
+        viewProgressViewModel =
+            ViewModelProvider(this, providerFactory)[ViewProgressViewModel::class.java]
+        subscribeObserver()
         addNewCycle.setOnClickListener {
             findNavController().navigate(R.id.action_viewProgressFragment_to_createNewCycleFragment)
         }
-        subscribeObserver()
-        viewCycleViewModel.setStateEvent(ViewCycleStateEvent.GetFullInfoAboutThisCycleInCurrentDay())
     }
 
     private fun subscribeObserver() {
-        viewCycleViewModel.dataState.observe(viewLifecycleOwner, Observer { dataState ->
+        viewProgressViewModel.dataState.observe(viewLifecycleOwner, Observer { dataState ->
             onDataStateChanged(dataState)
-            println("$TAG: subscribeObserver ${dataState.data.toString()}")
-            dataState.data?.data?.getContentIfNotHandled()?.let { viewCycleViewState ->
-                viewCycleViewModel.setViewState(viewCycleViewState)
+            dataState.data?.data?.getContentIfNotHandled()?.let {viewState ->
+                viewProgressViewModel.setViewState(viewState)
             }
         })
 
-        viewCycleViewModel.viewState.observe(viewLifecycleOwner, Observer { viewState ->
+        viewProgressViewModel.viewState.observe(viewLifecycleOwner, Observer { viewState ->
+            if (viewState.listOfTask.taskList.isNotEmpty()) {
+                // todo set to list
 
+            }
         })
     }
 

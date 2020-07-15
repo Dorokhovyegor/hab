@@ -6,7 +6,8 @@ import androidx.room.PrimaryKey
 
 @Entity
 data class Day(
-    @PrimaryKey val dayId: Int,
+    @PrimaryKey
+    val dayId: Int,
     val habitId: Int,
     val date: String,
     val result: Int

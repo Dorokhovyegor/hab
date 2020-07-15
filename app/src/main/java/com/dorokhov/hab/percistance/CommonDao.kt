@@ -11,11 +11,8 @@ import com.dorokhov.hab.percistance.entities.HabitWithDays
 interface CommonDao {
 
     @Transaction
-    @Query("SELECT * From Cycle WHERE cycleId = :id")
-    fun getHabitsInCurrentCycle(id: Int): LiveData<CycleWithHabits>
-
     @Query("SELECT * From Cycle")
-    fun getCycles(): LiveData<Cycle>
+    suspend fun getHabitsInCurrentCycle(): List<CycleWithHabits>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertNewCycle(cycle: Cycle): Long
@@ -26,11 +23,18 @@ interface CommonDao {
     @Update
     suspend fun updateDayWithId(day: Day): Int
 
-    // у цилка есть привычки -> у привычки есть дни -> день долежн быть равен запрашеваемой строчкее
-/*    @Transaction
+    // todo make sure this return only one note
     @Query("""
-        SELECT * from Day where date = :dateParam
+        SELECT * FROM Cycle
     """)
-    suspend fun getActiveHabitInCurrentDay(dateParam: String, cycleId: Int): List<Day>*/
+    suspend fun getCycle(): Cycle
+
+    @Query("""
+        SELECT * From Day 
+        WHERE Day.habitId = (SELECT Habit.habitId FROM Habit
+        WHERE Habit.cycleId = (SELECT cycleId FROM Cycle))
+        AND Day.date =:date
+    """)
+    suspend fun getDaysForCurrentCycleInCurrentDate(date: String): List<Day>
 
 }

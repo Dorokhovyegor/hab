@@ -6,6 +6,7 @@ import com.dorokhov.hab.ui.viewmodels.CreateCycleViewModel
 import com.dorokhov.hab.ui.viewmodels.CreateHabitViewModel
 import com.dorokhov.hab.ui.viewmodels.HabitListViewModel
 import com.dorokhov.hab.ui.viewmodels.ViewCycleViewModel
+import com.dorokhov.hab.ui.viewmodels.ViewProgressViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
@@ -30,7 +31,7 @@ abstract class ViewModelModule {
 
     @Binds
     @IntoMap
-    @ViewModelKey(ViewCycleViewModel::class)
-    abstract fun bindViewCycleViewModel(viewCycleViewModel: ViewCycleViewModel): ViewModel
+    @ViewModelKey(ViewProgressViewModel::class)
+    abstract fun bindViewProgressViewModel(viewProgressViewModel: ViewProgressViewModel): ViewModel
 
 }
