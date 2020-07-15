@@ -7,7 +7,6 @@ data class CycleWithHabits(
     @Embedded val cycle: Cycle,
     @Relation(
         parentColumn = "cycleId",
-        entityColumn = "cycleId"
-    )
+        entityColumn = "cycleId")
     val habits: List<Habit>
 )

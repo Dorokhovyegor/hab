@@ -1,8 +1,6 @@
 package com.dorokhov.hab.repositories.habit
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.map
-import androidx.lifecycle.switchMap
 import com.dorokhov.hab.percistance.HabitDao
 import com.dorokhov.hab.percistance.entities.Habit
 import com.dorokhov.hab.repositories.DataSourceManager
@@ -78,7 +76,7 @@ constructor(
     fun getAllHabits(): LiveData<DataState<ViewHabitViewState>> {
         return object : DataSourceManager<ViewHabitViewState>() {
             override suspend fun loadFromCache() {
-                habitDao.getHabits().let { habits ->
+                habitDao.getAllHabits().let { habits ->
                     onCompleteJob(DataState.data(ViewHabitViewState(HabitFields(habits)), null))
                 }
             }

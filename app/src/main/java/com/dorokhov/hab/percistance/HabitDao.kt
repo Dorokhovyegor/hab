@@ -14,6 +14,6 @@ interface HabitDao {
     fun insertNewHabit(habit: Habit): Long
 
     @Query("SELECT * From habit")
-    suspend fun getHabits(): List<Habit>
+    suspend fun getAllHabits(): List<Habit>
 
 }
