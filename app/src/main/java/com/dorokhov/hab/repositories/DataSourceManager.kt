@@ -6,6 +6,7 @@ import androidx.lifecycle.MediatorLiveData
 import com.dorokhov.hab.ui.DataState
 import com.dorokhov.hab.ui.Response
 import com.dorokhov.hab.ui.ResponseType
+import com.dorokhov.hab.utils.ErrorCodes.UNKNOWN_ERROR
 import kotlinx.coroutines.*
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.Dispatchers.Main
@@ -26,7 +27,7 @@ abstract class DataSourceManager<ViewStateType> {
 
     private fun doCacheRequest() {
         coroutineScope.launch {
-            delay(3000)
+            delay(600)
             loadFromCache()
         }
     }
@@ -43,27 +44,26 @@ abstract class DataSourceManager<ViewStateType> {
     }
 
     fun onErrorReturn(errorMessage: String?, shouldUserDialog: Boolean, shouldUseToast: Boolean) {
-        var msg = errorMessage
-        var useDialog = shouldUserDialog
         var responseType: ResponseType = ResponseType.None()
+
         if (shouldUseToast) {
             responseType = ResponseType.Toast()
         }
-        if (useDialog) {
+        if (shouldUserDialog) {
             responseType = ResponseType.Dialog()
         }
 
         onCompleteJob(
             DataState.error(
                 response = Response(
-                    message = msg,
+                    codeError = UNKNOWN_ERROR,
+                    message = errorMessage,
                     responseType = responseType
                 )
             )
         )
     }
 
-    @InternalCoroutinesApi
     private fun initNewJob(): Job {
         job = Job()
         job.invokeOnCompletion(

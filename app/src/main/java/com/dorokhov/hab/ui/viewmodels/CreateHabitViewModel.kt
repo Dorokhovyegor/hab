@@ -24,7 +24,7 @@ constructor(
     override fun handleStateEvent(it: CreateNewHabitStateEvent): LiveData<DataState<CreateNewHabitViewState>> {
         when (it) {
             is CreateNewHabitStateEvent.CreateHabitEvent -> {
-                return repository.createNewHabit(
+                return repository.createAndAddNewHabit(
                     it.title,
                     it.description,
                     it.monday,

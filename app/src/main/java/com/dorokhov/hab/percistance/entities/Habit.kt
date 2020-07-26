@@ -5,7 +5,8 @@ import androidx.room.PrimaryKey
 
 @Entity
 data class Habit(
-    @PrimaryKey(autoGenerate = true) val habitId: Int?,
+    @PrimaryKey(autoGenerate = true)
+    val habitId: Int?,
     val cycleId: Int?,
     val name: String,
     val description: String,
@@ -16,4 +17,9 @@ data class Habit(
     val friday: Boolean,
     val saturday: Boolean,
     val sunday: Boolean
-)
+) {
+
+    fun updateObject(id: Int): Habit {
+        return Habit(id, cycleId, name, description, monday, tuesday, wednesday, thursday, friday, saturday, sunday)
+    }
+}

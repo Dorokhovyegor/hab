@@ -23,12 +23,12 @@ constructor(
 
     @InternalCoroutinesApi
     override fun handleStateEvent(it: ViewProgressStateEvent): LiveData<DataState<ViewProgressViewState>> {
-        when (it) {
+        return when (it) {
             is ViewProgressStateEvent.RequestCommonInformation -> {
-                return cycleRepository.getCommonInfoCycle(it.date)
+                cycleRepository.getCommonInfoCycle(it.date)
             }
             is ViewProgressStateEvent.None -> {
-                return liveData {  }
+                liveData {  }
             }
         }
     }
@@ -41,7 +41,7 @@ constructor(
 
     fun setTaskList(task: List<Day>) {
         val update = getCurrentNewStateOrNew()
-        update.listOfTask.taskList = task
+        update.listOfTaskFields.taskList = task
         setViewState(update)
     }
 

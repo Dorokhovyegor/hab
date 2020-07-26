@@ -1,8 +1,7 @@
-package com.dorokhov.hab
+package com.dorokhov.hab.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import dagger.android.DaggerActivity
+import com.dorokhov.hab.R
 import dagger.android.support.DaggerAppCompatActivity
 
 class MainActivity : DaggerAppCompatActivity() {

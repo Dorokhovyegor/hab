@@ -4,7 +4,7 @@ import com.dorokhov.hab.percistance.entities.Day
 
 data class ViewProgressViewState(
     var commonProgressFields: CommonProgressFields = CommonProgressFields(),
-    var listOfTask: ListOfTask = ListOfTask()
+    var listOfTaskFields: ListOfTaskFields = ListOfTaskFields()
 )
 
 data class CommonProgressFields(
@@ -13,6 +13,10 @@ data class CommonProgressFields(
     var amountOfHabits: String = ""
 )
 
-data class ListOfTask(
+data class ListOfTaskFields(
     var taskList: List<Day> = ArrayList()
+)
+
+data class ProgressIndicatorFields(
+    var daysIndicator: List<Int> = ArrayList(14)
 )

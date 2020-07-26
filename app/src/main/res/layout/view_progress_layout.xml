@@ -19,9 +19,9 @@
         app:mpb_useIntrinsicPadding="false" />
 
     <com.google.android.material.card.MaterialCardView
+        android:id="@+id/progressContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/progressContainer"
         android:layout_margin="16dp"
         app:cardBackgroundColor="@android:color/white"
         app:cardElevation="2dp"
@@ -198,6 +198,18 @@
 
     </com.google.android.material.card.MaterialCardView>
 
+    <TextView
+        android:layout_marginTop="24dp"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:text="Ваши задания на сегодня"
+        android:layout_marginHorizontal="24dp"
+        android:id="@+id/titleTextView"
+        android:textColor="@color/black"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/progressContainer" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/listHabitsInCurrentDay"
         android:layout_width="match_parent"
@@ -205,7 +217,7 @@
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="16dp"
         app:layout_constraintBottom_toTopOf="@+id/addNewCycle"
-        app:layout_constraintTop_toBottomOf="@id/progressContainer" />
+        app:layout_constraintTop_toBottomOf="@id/titleTextView" />
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/addNewCycle"
