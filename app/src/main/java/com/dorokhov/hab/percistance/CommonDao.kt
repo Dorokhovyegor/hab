@@ -17,8 +17,10 @@ interface CommonDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertDaysToHabitWithId(day: List<Day>): List<Long>
 
-    @Update
-    suspend fun updateDayWithId(day: Day): Int
+    @Query("""
+            UPDATE Day SET result = :newStaus WHERE dayId =:dayId
+        """)
+    suspend fun updateDayWithId(dayId: Int, newStaus: Int): Int
 
     // todo make sure this return only one note
     @Query("""

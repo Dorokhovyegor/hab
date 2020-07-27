@@ -10,7 +10,6 @@ import com.dorokhov.hab.ui.fragments.TaskCheckListener
 import com.dorokhov.hab.ui.fragments.ViewProgressFragment.Companion.CHECKED
 import com.dorokhov.hab.ui.fragments.ViewProgressFragment.Companion.INDETERMINATE
 import com.dorokhov.hab.ui.fragments.ViewProgressFragment.Companion.UNCHECKED
-import com.dorokhov.hab.utils.Logger
 import kotlinx.android.synthetic.main.task_item_layout.view.*
 
 const val UNKNOWN_RESULT = -1
@@ -58,13 +57,25 @@ class TaskRecyclerViewAdapter(
     ) : RecyclerView.ViewHolder(view) {
         fun bind(day: Day) = with(itemView) {
             habName.text = day.habitName
+            when (day.result) {
+                UNCHECKED -> {
+                    habState.setChecked(false, false)
+                }
+                INDETERMINATE -> {
+                    habState.setChecked(true, true)
+                }
+                CHECKED -> {
+                    habState.setChecked(true, false)
+                }
+            }
+            habState.setChecked(day.result == CHECKED, day.result == INDETERMINATE)
             habState.setOnClickListener {
                 when {
                     !habState.isChecked && !habState.isIndeterminate -> {
                         taskCheckListener.onCheck(day.dayId!!, UNCHECKED)
                     }
                     habState.isIndeterminate -> {
-                        taskCheckListener.onCheck(day.dayId!!,INDETERMINATE)
+                        taskCheckListener.onCheck(day.dayId!!, INDETERMINATE)
                     }
                     habState.isChecked -> {
                         taskCheckListener.onCheck(day.dayId!!, CHECKED)

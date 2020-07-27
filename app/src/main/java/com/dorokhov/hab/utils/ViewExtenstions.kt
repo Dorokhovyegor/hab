@@ -3,6 +3,7 @@ package com.dorokhov.hab.utils
 import android.content.Context
 import android.widget.Toast
 import com.dorokhov.cycleprogress.CycleProgressView
+import java.text.SimpleDateFormat
 import java.util.*
 
 fun Context.showShortToast(message: String) {
@@ -15,4 +16,11 @@ fun Context.getRandomCell(): CycleProgressView {
     ).apply {
         typeChecked = Random().nextInt(4)
     }
+}
+
+fun Context.getCurrentDate(): String {
+    val pattern = "dd-MM-yyyy"
+    val simpleDateFormat = SimpleDateFormat(pattern, Locale.ENGLISH)
+    val c = Calendar.getInstance()
+    return simpleDateFormat.format(c.time).toString()
 }

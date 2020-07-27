@@ -1,7 +1,6 @@
 package com.dorokhov.hab.ui.fragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,6 +17,7 @@ import com.dorokhov.hab.ui.fragments.datastate.viewprogress.ViewProgressViewStat
 import com.dorokhov.hab.ui.viewmodels.ViewProgressViewModel
 import com.dorokhov.hab.utils.ErrorCodes
 import com.dorokhov.hab.utils.Logger
+import com.dorokhov.hab.utils.getCurrentDate
 import kotlinx.android.synthetic.main.view_progress_layout.*
 
 class ViewProgressFragment : BaseFragment(), TaskCheckListener {
@@ -34,15 +34,16 @@ class ViewProgressFragment : BaseFragment(), TaskCheckListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        requireActivity().actionBar?.title = context?.getCurrentDate()
         viewProgressViewModel =
             ViewModelProvider(this, providerFactory)[ViewProgressViewModel::class.java]
-        viewProgressViewModel.setStateEvent(ViewProgressStateEvent.RequestCommonInformation("27-07-2020"))
+        viewProgressViewModel.setStateEvent(ViewProgressStateEvent.RequestCommonInformation(context?.getCurrentDate()!!))
         subscribeObserver()
         addNewCycle.setOnClickListener {
             findNavController().navigate(R.id.action_viewProgressFragment_to_createNewCycleFragment)
         }
         editCycle.setOnClickListener {
-
+            findNavController().navigate(R.id.action_viewProgressFragment_to_editCycleFragment)
         }
     }
 
@@ -57,7 +58,7 @@ class ViewProgressFragment : BaseFragment(), TaskCheckListener {
 
         viewProgressViewModel.viewState.observe(viewLifecycleOwner, Observer { viewState ->
             if (viewState.listOfTaskFields.taskList.isNotEmpty()) {
-                Logger.loge("ViewProgressFragment ${viewState}")
+                addNewCycle.hide()
                 listHabitsInCurrentDay.apply {
                     adapter = TaskRecyclerViewAdapter(this@ViewProgressFragment).apply {
                         taskList = viewState.listOfTaskFields.taskList
@@ -91,13 +92,8 @@ class ViewProgressFragment : BaseFragment(), TaskCheckListener {
             View.VISIBLE else horizontalProgressBar.visibility = View.GONE
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-
-    }
-
     override fun onCheck(dayId: Int, state: Int) {
-        Logger.loge("onCheckBox change state: ${dayId} ${state}")
+        viewProgressViewModel.setStateEvent(ViewProgressStateEvent.ChangeDayState(dayId, state))
     }
 
     companion object {

@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         app:cardBackgroundColor="@android:color/white"
-        app:cardElevation="2dp"
+        app:cardElevation="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -202,7 +202,7 @@
         android:layout_marginTop="24dp"
         android:textSize="18sp"
         android:textStyle="bold"
-        android:text="Ваши задания на сегодня"
+        android:text="Ваши задания на сегодня:"
         android:layout_marginHorizontal="24dp"
         android:id="@+id/titleTextView"
         android:textColor="@color/black"
