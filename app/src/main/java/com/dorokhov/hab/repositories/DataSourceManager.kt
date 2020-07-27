@@ -45,14 +45,12 @@ abstract class DataSourceManager<ViewStateType> {
 
     fun onErrorReturn(errorMessage: String?, shouldUserDialog: Boolean, shouldUseToast: Boolean) {
         var responseType: ResponseType = ResponseType.None()
-
         if (shouldUseToast) {
             responseType = ResponseType.Toast()
         }
         if (shouldUserDialog) {
             responseType = ResponseType.Dialog()
         }
-
         onCompleteJob(
             DataState.error(
                 response = Response(
@@ -72,13 +70,11 @@ abstract class DataSourceManager<ViewStateType> {
             handler = object : CompletionHandler {
                 override fun invoke(cause: Throwable?) {
                     if (job.isCancelled) {
-                        Log.e(TAG, "NetworkBoundResource: Job has been cancelled.")
                         cause?.let {
                             onErrorReturn(it.message, false, true)
                         } ?: onErrorReturn("unknown error", false, true)
                     } else if (job.isCompleted) {
-                        Log.e(TAG, "NetworkBoundResource: Job has been completed.")
-                        // do nothing. Should be handled already
+
                     }
                 }
             })
@@ -91,6 +87,4 @@ abstract class DataSourceManager<ViewStateType> {
     abstract suspend fun loadFromCache()
 
     abstract fun setJob(job: Job)
-
-
 }

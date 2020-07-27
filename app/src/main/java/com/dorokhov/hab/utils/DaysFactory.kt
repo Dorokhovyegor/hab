@@ -22,6 +22,7 @@ object DaysFactory {
                         Day(
                             null,
                             habit.habitId!!,
+                            habit.name,
                             currentDateInMilliseconds.toStringDate(),
                             -1
                         )
@@ -35,6 +36,7 @@ object DaysFactory {
                         Day(
                             null,
                             habit.habitId!!,
+                            habit.name,
                             currentDateInMilliseconds.toStringDate(),
                             -1
                         )
@@ -48,6 +50,7 @@ object DaysFactory {
                         Day(
                             null,
                             habit.habitId!!,
+                            habit.name,
                             currentDateInMilliseconds.toStringDate(),
                             -1
                         )
@@ -61,6 +64,7 @@ object DaysFactory {
                         Day(
                             null,
                             habit.habitId!!,
+                            habit.name,
                             currentDateInMilliseconds.toStringDate(),
                             -1
                         )
@@ -74,6 +78,7 @@ object DaysFactory {
                         Day(
                             null,
                             habit.habitId!!,
+                            habit.name,
                             currentDateInMilliseconds.toStringDate(),
                             -1
                         )
@@ -87,6 +92,7 @@ object DaysFactory {
                         Day(
                             null,
                             habit.habitId!!,
+                            habit.name,
                             currentDateInMilliseconds.toStringDate(),
                             -1
                         )
@@ -100,6 +106,7 @@ object DaysFactory {
                         Day(
                             null,
                             habit.habitId!!,
+                            habit.name,
                             currentDateInMilliseconds.toStringDate(),
                             -1
                         )

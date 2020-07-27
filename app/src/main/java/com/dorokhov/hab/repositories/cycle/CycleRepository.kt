@@ -71,11 +71,9 @@ constructor(
             override suspend fun loadFromCache() {
                 val cycle = commonDao.getCycle()
                 cycle?.let { cycleInfo ->
-
                     val habitList = commonDao.getHabitsInCurrentCycle()
-                    val taskList = commonDao.getDaysForCurrentCycleInCurrentDate(date)
-                    val daysList = commonDao.getAllDays("26-07-2020")
-                    Logger.loge(daysList)
+                    val taskList = commonDao.getAllDays(date)
+                    Logger.loge(taskList)
                     val viewState = ViewProgressViewState()
                     viewState.commonProgressFields =
                         CommonProgressFields(

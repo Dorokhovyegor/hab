@@ -9,6 +9,7 @@ data class Day(
     @PrimaryKey(autoGenerate = true)
     val dayId: Int?,
     val habitId: Int, // к какой привычке привязано
+    val habitName: String,
     val date: String, // текущая дата
     val result: Int // итог как прошел дней
 )

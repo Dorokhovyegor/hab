@@ -84,4 +84,5 @@ dependencies {
     def material_progress_bar = "1.6.1"
     implementation "me.zhanghai.android.materialprogressbar:library:${material_progress_bar}"
 
+    implementation "it.sephiroth.android.library:tri-state-checkbox:1.0.0"
 }
