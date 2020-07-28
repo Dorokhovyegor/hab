@@ -3,7 +3,8 @@ package com.dorokhov.hab.ui.fragments.datastate.editcycle
 import com.dorokhov.hab.percistance.entities.Habit
 
 data class EditCycleViewState(
-    var cycleInfoFields: CycleInfoFields = CycleInfoFields()
+    var cycleInfoFields: CycleInfoFields = CycleInfoFields(),
+    var habitListFields: HabitListFields = HabitListFields()
 )
 
 data class CycleInfoFields(
@@ -11,5 +12,5 @@ data class CycleInfoFields(
 )
 
 data class HabitListFields(
-    var habitList: ArrayList<Habit> = ArrayList()
+    var habitList: List<Habit> = ArrayList()
 )

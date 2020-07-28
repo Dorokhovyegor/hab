@@ -2,6 +2,7 @@ package com.dorokhov.hab.repositories.cycle
 
 import androidx.lifecycle.LiveData
 import com.dorokhov.hab.percistance.CommonDao
+import com.dorokhov.hab.percistance.HabitDao
 import com.dorokhov.hab.percistance.entities.Cycle
 import com.dorokhov.hab.repositories.DataSourceManager
 import com.dorokhov.hab.repositories.JobManager
@@ -9,8 +10,10 @@ import com.dorokhov.hab.ui.DataState
 import com.dorokhov.hab.ui.Response
 import com.dorokhov.hab.ui.ResponseType
 import com.dorokhov.hab.ui.fragments.datastate.createcycle.CreateCycleViewState
+import com.dorokhov.hab.ui.fragments.datastate.editcycle.EditCycleViewState
 import com.dorokhov.hab.ui.fragments.datastate.viewprogress.CommonProgressFields
 import com.dorokhov.hab.ui.fragments.datastate.viewprogress.ViewProgressViewState
+import com.dorokhov.hab.utils.ErrorCodes
 import com.dorokhov.hab.utils.ErrorCodes.CANT_INSERT_CYCLE_TO_DB
 import com.dorokhov.hab.utils.ErrorCodes.SUCCESS
 import com.dorokhov.hab.utils.ErrorCodes.THERE_IS_NOT_CYCLE
@@ -23,7 +26,8 @@ import javax.inject.Inject
 class CycleRepository
 @Inject
 constructor(
-    private val commonDao: CommonDao
+    private val commonDao: CommonDao,
+    private val habitDao: HabitDao
 ) : JobManager("CycleRepository") {
 
     @InternalCoroutinesApi
@@ -66,7 +70,7 @@ constructor(
     }
 
     @InternalCoroutinesApi
-    fun getCommonInfoCycle(date: String): LiveData<DataState<ViewProgressViewState>> {
+    fun getCommonInfoWithTasks(date: String): LiveData<DataState<ViewProgressViewState>> {
         return object : DataSourceManager<ViewProgressViewState>() {
             override suspend fun loadFromCache() {
                 val cycle = commonDao.getCycle()
@@ -84,20 +88,50 @@ constructor(
                     viewState.listOfTaskFields.taskList = taskList
                     onCompleteJob(DataState.data(viewState, null))
                 } ?: onCompleteJob(
-                        DataState.error(
-                            Response(
-                                THERE_IS_NOT_CYCLE,
-                                "Вы еще не начали свой цикл",
-                                ResponseType.Toast()
-                            )
+                    DataState.error(
+                        Response(
+                            THERE_IS_NOT_CYCLE,
+                            "Вы еще не начали свой цикл",
+                            ResponseType.Toast()
                         )
                     )
+                )
             }
 
             override fun setJob(job: Job) {
                 addJob("getCommonInfoCycle", job)
             }
 
+        }.asLiveData()
+    }
+
+    @InternalCoroutinesApi
+    fun getCommonInfoWithHabits(): LiveData<DataState<EditCycleViewState>> {
+        return object : DataSourceManager<EditCycleViewState>() {
+            override suspend fun loadFromCache() {
+                val cycle = commonDao.getCycle()
+                val habits = habitDao.getAllHabits()
+                val viewState = EditCycleViewState()
+                cycle?.let { info ->
+                    viewState.cycleInfoFields.nameCycle = info.name
+                } ?: onCompleteJob(
+                    DataState.error(
+                        Response(
+                            ErrorCodes.THERE_IS_NOT_CYCLE,
+                            "Не нашел подходящего цикла",
+                            ResponseType.Toast()
+                        )
+                    )
+                )
+                if (habits.isNotEmpty()) {
+                    viewState.habitListFields.habitList = habits
+                }
+                onCompleteJob(DataState.data(viewState, null))
+            }
+
+            override fun setJob(job: Job) {
+                addJob("getCommonInfoWithHabits", job)
+            }
         }.asLiveData()
     }
 }

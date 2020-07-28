@@ -27,7 +27,7 @@ constructor(
     override fun handleStateEvent(it: ViewProgressStateEvent): LiveData<DataState<ViewProgressViewState>> {
         return when (it) {
             is ViewProgressStateEvent.RequestCommonInformation -> {
-                cycleRepository.getCommonInfoCycle(it.date)
+                cycleRepository.getCommonInfoWithTasks(it.date)
             }
             is ViewProgressStateEvent.ChangeDayState -> {
                 taskRepository.updateTaskStatus(it.dayId, it.newState)

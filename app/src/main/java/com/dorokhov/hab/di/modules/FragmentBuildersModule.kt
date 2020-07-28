@@ -24,5 +24,4 @@ abstract class FragmentBuildersModule {
 
     @ContributesAndroidInjector
     abstract fun contributeViewProgressFragment(): ViewProgressFragment
-
 }

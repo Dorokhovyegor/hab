@@ -2,10 +2,7 @@ package com.dorokhov.hab.di.modules
 
 import androidx.lifecycle.ViewModel
 import com.dorokhov.hab.di.ViewModelKey
-import com.dorokhov.hab.ui.viewmodels.CreateCycleViewModel
-import com.dorokhov.hab.ui.viewmodels.CreateHabitViewModel
-import com.dorokhov.hab.ui.viewmodels.HabitListViewModel
-import com.dorokhov.hab.ui.viewmodels.ViewProgressViewModel
+import com.dorokhov.hab.ui.viewmodels.*
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
@@ -32,5 +29,10 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(ViewProgressViewModel::class)
     abstract fun bindViewProgressViewModel(viewProgressViewModel: ViewProgressViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(EditCycleViewModel::class)
+    abstract fun bindViewEditCycleViewModel(viewProgressViewModel: EditCycleViewModel): ViewModel
 
 }

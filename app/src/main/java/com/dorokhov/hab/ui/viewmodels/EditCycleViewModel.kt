@@ -7,6 +7,7 @@ import com.dorokhov.hab.repositories.habit.HabitRepository
 import com.dorokhov.hab.ui.DataState
 import com.dorokhov.hab.ui.fragments.datastate.editcycle.EditCycleStateEvent
 import com.dorokhov.hab.ui.fragments.datastate.editcycle.EditCycleViewState
+import kotlinx.coroutines.InternalCoroutinesApi
 import javax.inject.Inject
 
 class EditCycleViewModel
@@ -18,13 +19,14 @@ constructor(
 
     override fun initNewViewState(): EditCycleViewState = EditCycleViewState()
 
+    @InternalCoroutinesApi
     override fun handleStateEvent(it: EditCycleStateEvent): LiveData<DataState<EditCycleViewState>> {
         return when (it) {
             is EditCycleStateEvent.AddNewHabitToCycle -> {
-                habitRepository.createAndAddNewHabit()
+                liveData {  }
             }
             is EditCycleStateEvent.GetCycleInfoWithHabits -> {
-                liveData { }
+                cycleRepository.getCommonInfoWithHabits()
             }
             is EditCycleStateEvent.DeleteHabitFromCycle -> {
                 liveData { }

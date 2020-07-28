@@ -65,14 +65,19 @@ constructor(
                             )
                         )
                     )
-                }
-            }
 
+        }
+    }
             override fun setJob(job: Job) {
                 addJob("createNewHabit", job)
             }
         }.asLiveData()
     }
+
+/*    @InternalCoroutinesApi
+    fun deleteHabitById(habitId: Int): LiveData<DataState<>> {
+
+    }*/
 
     @InternalCoroutinesApi
     fun getAllHabits(): LiveData<DataState<ViewHabitViewState>> {
