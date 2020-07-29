@@ -23,7 +23,17 @@ constructor(
     override fun handleStateEvent(it: EditCycleStateEvent): LiveData<DataState<EditCycleViewState>> {
         return when (it) {
             is EditCycleStateEvent.AddNewHabitToCycle -> {
-                liveData {  }
+                cycleRepository.addNewHabit(
+                    it.title,
+                    it.description,
+                    it.monday,
+                    it.tuesday,
+                    it.wednesday,
+                    it.thursday,
+                    it.friday,
+                    it.saturday,
+                    it.sunday
+                )
             }
             is EditCycleStateEvent.GetCycleInfoWithHabits -> {
                 cycleRepository.getCommonInfoWithHabits()
@@ -38,5 +48,7 @@ constructor(
                 liveData { }
             }
         }
+
+
     }
 }

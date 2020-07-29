@@ -6,14 +6,18 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.dorokhov.hab.R
-import com.dorokhov.hab.ui.fragments.BaseFragment
+import com.dorokhov.hab.ui.adapters.HabitRecyclerViewAdapter
 import com.dorokhov.hab.ui.fragments.datastate.editcycle.EditCycleStateEvent
 import com.dorokhov.hab.ui.viewmodels.EditCycleViewModel
 import com.dorokhov.hab.utils.Logger
 import kotlinx.android.synthetic.main.edit_cycle_layout.*
+import kotlinx.android.synthetic.main.edit_cycle_layout.horizontalProgressBar
+import kotlinx.android.synthetic.main.view_progress_layout.*
 
-class EditCycleFragment: BaseFragment() {
+class EditCycleFragment : BaseFragment() {
 
     lateinit var editCycleViewModel: EditCycleViewModel
 
@@ -27,27 +31,39 @@ class EditCycleFragment: BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        editCycleViewModel = ViewModelProvider(this, providerFactory)[EditCycleViewModel::class.java]
-        subscribeObserver()
+        addNewHabit.setOnClickListener {
+            findNavController().navigate(R.id.action_editCycleFragment_to_createNewHabitFragment)
+        }
+        editCycleViewModel =
+            ViewModelProvider(this, providerFactory)[EditCycleViewModel::class.java]
         editCycleViewModel.setStateEvent(EditCycleStateEvent.GetCycleInfoWithHabits())
+        subscribeObserver()
     }
 
     private fun subscribeObserver() {
-        editCycleViewModel.dataState.observe(viewLifecycleOwner, Observer {dataState ->
+        editCycleViewModel.dataState.observe(viewLifecycleOwner, Observer { dataState ->
             onDataStateChanged(dataState)
             dataState.data?.data?.getContentIfNotHandled()?.let { editCycleViewState ->
                 editCycleViewModel.setViewState(editCycleViewState)
             }
         })
 
-        editCycleViewModel.viewState.observe(viewLifecycleOwner, Observer {viewState ->
+        editCycleViewModel.viewState.observe(viewLifecycleOwner, Observer { viewState ->
             nameEditText.setText(viewState.cycleInfoFields.nameCycle)
-            Logger.loge(viewState)
+            if (viewState.habitListFields.habitList.isNotEmpty()) {
+                listHabitsInCurrentCycle.apply {
+                    adapter = HabitRecyclerViewAdapter(null).apply {
+                        this.habitList = viewState.habitListFields.habitList
+                    }
+                    layoutManager = LinearLayoutManager(context)
+                }
+            }
         })
     }
 
     override fun showLoadingState(visible: Boolean) {
-
+        if (visible) horizontalProgressBar.visibility =
+            View.VISIBLE else horizontalProgressBar.visibility = View.GONE
     }
 
 }

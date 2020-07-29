@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import com.dorokhov.hab.percistance.CommonDao
 import com.dorokhov.hab.percistance.HabitDao
 import com.dorokhov.hab.percistance.entities.Cycle
+import com.dorokhov.hab.percistance.entities.Habit
 import com.dorokhov.hab.repositories.DataSourceManager
 import com.dorokhov.hab.repositories.JobManager
 import com.dorokhov.hab.ui.DataState
@@ -102,6 +103,65 @@ constructor(
                 addJob("getCommonInfoCycle", job)
             }
 
+        }.asLiveData()
+    }
+
+    @InternalCoroutinesApi
+    fun addNewHabit(
+        title: String,
+        description: String,
+        monday: Boolean,
+        tuesday: Boolean,
+        wednesday: Boolean,
+        thursday: Boolean,
+        friday: Boolean,
+        saturday: Boolean,
+        sunday: Boolean
+    ): LiveData<DataState<EditCycleViewState>> {
+        return object : DataSourceManager<EditCycleViewState>() {
+            override suspend fun loadFromCache() {
+                val habitInserResult = habitDao.insertNewHabit(
+                    Habit(
+                        null,
+                        0,
+                        title,
+                        description,
+                        monday,
+                        tuesday,
+                        wednesday,
+                        thursday,
+                        friday,
+                        saturday,
+                        sunday
+                    )
+                )
+                if (habitInserResult >= 0) {
+                    onCompleteJob(
+                        DataState.data(
+                            null,
+                            Response(
+                                ErrorCodes.SUCCESS,
+                                "Новая привычка успешно добавлена",
+                                ResponseType.Toast()
+                            )
+                        )
+                    )
+                } else {
+                    onCompleteJob(
+                        DataState.error(
+                            Response(
+                                ErrorCodes.CANT_INSERT_HABIT_TO_DB,
+                                "Не удалось добавить привычку",
+                                ResponseType.Toast()
+                            )
+                        )
+                    )
+                }
+            }
+
+            override fun setJob(job: Job) {
+                addJob("addNewHabit", job)
+            }
         }.asLiveData()
     }
 

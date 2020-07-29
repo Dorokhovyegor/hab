@@ -8,9 +8,11 @@ import com.dorokhov.hab.R
 import com.dorokhov.hab.percistance.entities.Habit
 import kotlinx.android.synthetic.main.habit_item_layout.view.*
 
-class HabitRecyclerViewAdapter() : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class HabitRecyclerViewAdapter(
+    private val onHabitClickListener: OnHabitClickListener?
+) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    var habitList: List<Habit>? = ArrayList<Habit>()
+    var habitList: List<Habit>? = ArrayList()
 
     fun setHabits(habits: List<Habit>) {
         habitList = habits
@@ -19,7 +21,8 @@ class HabitRecyclerViewAdapter() : RecyclerView.Adapter<RecyclerView.ViewHolder>
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return HabitViewHolder(
-            LayoutInflater.from(parent.context).inflate(R.layout.habit_item_layout, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.habit_item_layout, parent, false),
+            onHabitClickListener
         )
     }
 
@@ -31,9 +34,18 @@ class HabitRecyclerViewAdapter() : RecyclerView.Adapter<RecyclerView.ViewHolder>
         }
     }
 
-    inner class HabitViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    inner class HabitViewHolder(
+        view: View,
+        val onHabitClickListener: OnHabitClickListener?
+    ) : RecyclerView.ViewHolder(view), View.OnClickListener {
 
+        private var habitId: Int? = null
         fun bind(habit: Habit?) = with(itemView) {
+            habitId = habit?.habitId
+            onHabitClickListener?.let {
+                itemView.setOnClickListener(this@HabitViewHolder)
+            }
+
             habit?.let {
                 habitName.text = it.name
                 habitDescription.text = it.description
@@ -47,5 +59,12 @@ class HabitRecyclerViewAdapter() : RecyclerView.Adapter<RecyclerView.ViewHolder>
             }
         }
 
+        override fun onClick(v: View?) {
+            onHabitClickListener?.onHabitClick(habitId)
+        }
     }
+}
+
+interface OnHabitClickListener {
+    fun onHabitClick(id: Int?)
 }

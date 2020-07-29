@@ -9,11 +9,12 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dorokhov.hab.R
 import com.dorokhov.hab.ui.adapters.HabitRecyclerViewAdapter
+import com.dorokhov.hab.ui.adapters.OnHabitClickListener
 import com.dorokhov.hab.ui.fragments.datastate.ViewHabitStateEvent
 import com.dorokhov.hab.ui.viewmodels.HabitListViewModel
 import kotlinx.android.synthetic.main.list_of_habits_layout.*
 
-class AddHabitFromListOfHabitsFragment : BaseFragment() {
+class AddHabitFromListOfHabitsFragment : BaseFragment(), OnHabitClickListener {
 
     lateinit var habitListViewModel: HabitListViewModel
 
@@ -42,7 +43,7 @@ class AddHabitFromListOfHabitsFragment : BaseFragment() {
         })
 
         habitListViewModel.viewState.observe(viewLifecycleOwner, Observer {viewState ->
-            val adapterRecView = HabitRecyclerViewAdapter()
+            val adapterRecView = HabitRecyclerViewAdapter(this)
             adapterRecView.setHabits(viewState.habitFields.habits)
             habitsRecyclerView?.apply {
                 layoutManager = LinearLayoutManager(context)
@@ -51,9 +52,12 @@ class AddHabitFromListOfHabitsFragment : BaseFragment() {
         })
     }
 
+    override fun onHabitClick(id: Int?) {
+        
+    }
+
     override fun showLoadingState(visible: Boolean) {
         if (visible) horizontalProgressBar.visibility = View.VISIBLE else horizontalProgressBar.visibility =
             View.GONE
     }
-
 }

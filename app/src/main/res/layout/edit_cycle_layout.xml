@@ -39,16 +39,32 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
+        android:id="@+id/titleTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="24dp"
         android:layout_marginTop="24dp"
+        android:ellipsize="end"
+        android:lines="1"
+        android:text="Список привычек:"
+        android:textColor="@color/black"
         android:textSize="18sp"
         android:textStyle="bold"
-        android:text="Список привычек в текущем цикле:"
-        android:layout_marginHorizontal="24dp"
-        android:id="@+id/titleTextView"
-        android:textColor="@color/black"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toStartOf="@+id/addNewHabit"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/nameInputLayout" />
+
+    <ImageButton
+        android:background="@null"
+        android:src="@drawable/ic_baseline_add_24"
+        android:id="@+id/addNewHabit"
+        android:layout_marginEnd="24dp"
+        android:padding="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/titleTextView"
+        app:layout_constraintBottom_toBottomOf="@id/titleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/listHabitsInCurrentCycle"
