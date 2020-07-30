@@ -7,16 +7,22 @@ import androidx.recyclerview.widget.RecyclerView
 import com.dorokhov.hab.R
 import com.dorokhov.hab.percistance.entities.Habit
 import kotlinx.android.synthetic.main.habit_item_layout.view.*
+import java.util.logging.Logger
 
 class HabitRecyclerViewAdapter(
     private val onHabitClickListener: OnHabitClickListener?
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    var habitList: List<Habit>? = ArrayList()
+    var habitList: ArrayList<Habit>? = ArrayList()
 
-    fun setHabits(habits: List<Habit>) {
+    fun setHabits(habits: ArrayList<Habit>) {
         habitList = habits
         notifyDataSetChanged()
+    }
+
+    fun deleteHabit(adapterPosition: Int) {
+        habitList?.removeAt(adapterPosition)
+        notifyItemRemoved(adapterPosition)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -24,6 +30,11 @@ class HabitRecyclerViewAdapter(
             LayoutInflater.from(parent.context).inflate(R.layout.habit_item_layout, parent, false),
             onHabitClickListener
         )
+    }
+
+    override fun getItemId(position: Int): Long {
+        com.dorokhov.hab.utils.Logger.loge(habitList?.get(position)?.habitId?.toLong()!!)
+        return habitList?.get(position)?.habitId?.toLong()!!
     }
 
     override fun getItemCount(): Int = habitList?.size ?: 0
@@ -38,6 +49,7 @@ class HabitRecyclerViewAdapter(
         view: View,
         val onHabitClickListener: OnHabitClickListener?
     ) : RecyclerView.ViewHolder(view), View.OnClickListener {
+
 
         private var habitId: Int? = null
         fun bind(habit: Habit?) = with(itemView) {

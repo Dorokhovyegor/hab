@@ -18,7 +18,6 @@
         app:mpb_showProgressBackground="false"
         app:mpb_useIntrinsicPadding="false" />
 
-
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/nameHabitInputLayout"
         android:layout_width="match_parent"
@@ -62,9 +61,8 @@
     <TextView
         android:id="@+id/helperTextView"
         app:layout_constraintTop_toBottomOf="@id/descriptionInputLayout"
-        android:text="Отметьте дни, в которые хотите выполнять привычки: "
+        android:text="Отметьте дни, в которые хотите выполнять эту привычку: "
         android:layout_marginTop="16dp"
-
         android:ellipsize="end"
         android:lines="2"
         android:textColor="#000"
@@ -75,18 +73,16 @@
         android:layout_height="wrap_content"/>
 
     <com.google.android.material.chip.ChipGroup
-
+        android:layout_marginTop="16dp"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="12dp"
-        app:chipSpacingHorizontal="1dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/helperTextView">
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chipMonday"
-            
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/chip_text_monday"

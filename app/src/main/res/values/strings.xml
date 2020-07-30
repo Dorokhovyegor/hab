@@ -4,6 +4,7 @@
     <string name="edit_text_hint_name_of_the_cycle">Название цикла</string>
     <string name="edit_text_hint_name_of_the_habit">Название привычки</string>
     <string name="menu_create_cycle">Создать цикл</string>
+    <string name="menu_save_cycle">Сохранить цикл</string>
     <string name="edit_text_hint_description_of_the_habit">Описание привычки</string>
     <string name="chip_text_monday">П</string>
     <string name="chip_text_tuesday">В</string>

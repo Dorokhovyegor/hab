@@ -14,6 +14,9 @@ interface CommonDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertNewCycle(cycle: Cycle): Long
 
+    @Query("UPDATE Cycle SET name =:name WHERE cycleId = 0")
+    suspend fun updateCycleName(name: String): Int
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertDaysToHabitWithId(day: List<Day>): List<Long>
 

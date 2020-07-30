@@ -17,6 +17,12 @@ interface HabitDao {
     @Query("SELECT * From Habit")
     suspend fun getAllHabits(): List<Habit>
 
+    @Query("DELETE FROM Habit WHERE Habit.habitId =:id")
+    suspend fun deleteHabitWithId(id: Int): Int
+
+    @Query("DELETE FROM Day WHERE Day.habitId =:habitId")
+    suspend fun deleteDaysFromHabit(habitId: Int): Int
+
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun addDaysToCurrentHabit(days: List<Day>): List<Long>
 }

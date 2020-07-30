@@ -35,11 +35,14 @@ constructor(
                     it.sunday
                 )
             }
+            is EditCycleStateEvent.SaveName -> {
+                cycleRepository.updateCycleInfo(it.newName)
+            }
             is EditCycleStateEvent.GetCycleInfoWithHabits -> {
                 cycleRepository.getCommonInfoWithHabits()
             }
             is EditCycleStateEvent.DeleteHabitFromCycle -> {
-                liveData { }
+                cycleRepository.deleteHabit(it.habitId)
             }
             is EditCycleStateEvent.ResetCycle -> {
                 liveData { }
@@ -48,7 +51,5 @@ constructor(
                 liveData { }
             }
         }
-
-
     }
 }

@@ -15,5 +15,9 @@ sealed class EditCycleStateEvent() {
         val sunday: Boolean
     ) : EditCycleStateEvent()
     class ResetCycle() : EditCycleStateEvent()
+    class SaveName(
+        val newName: String
+    ): EditCycleStateEvent()
     class None : EditCycleStateEvent()
+
 }

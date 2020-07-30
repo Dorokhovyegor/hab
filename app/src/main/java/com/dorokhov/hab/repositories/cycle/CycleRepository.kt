@@ -166,6 +166,68 @@ constructor(
     }
 
     @InternalCoroutinesApi
+    fun deleteHabit(habitId: Int): LiveData<DataState<EditCycleViewState>> {
+        return object : DataSourceManager<EditCycleViewState>() {
+            override suspend fun loadFromCache() {
+                val deleteResult = habitDao.deleteHabitWithId(habitId)
+                val deleteDays = habitDao.deleteDaysFromHabit(habitId)
+                if (deleteResult >= 0) {
+                    onCompleteJob(
+                        DataState.data(
+                            null, Response(
+                                SUCCESS,
+                                "Привычка удалена из цикла",
+                                ResponseType.Toast()
+                            )
+                        )
+                    )
+                } else {
+                    onCompleteJob(DataState.error(Response(
+                        ErrorCodes.UNKNOWN_ERROR,
+                        "Не удалось удалить",
+                        ResponseType.Toast()
+                    )))
+                }
+            }
+
+            override fun setJob(job: Job) {
+                addJob("deleteHabit", job)
+            }
+        }.asLiveData()
+    }
+
+    @InternalCoroutinesApi
+    fun updateCycleInfo(name: String): LiveData<DataState<EditCycleViewState>> {
+        return object : DataSourceManager<EditCycleViewState>() {
+            override suspend fun loadFromCache() {
+                val updateResult = commonDao.updateCycleName(name)
+                if (updateResult == 0) {
+                    onCompleteJob(
+                        DataState.data(
+                            null,
+                            Response(SUCCESS, "Имя обновлено", ResponseType.Toast())
+                        )
+                    )
+                } else {
+                    onCompleteJob(
+                        DataState.error(
+                            Response(
+                                ErrorCodes.CANT_UPDATE_CYCLE_NAME,
+                                "Имя обновлено",
+                                ResponseType.Toast()
+                            )
+                        )
+                    )
+                }
+            }
+
+            override fun setJob(job: Job) {
+                addJob("updateCycleInfo", job)
+            }
+        }.asLiveData()
+    }
+
+    @InternalCoroutinesApi
     fun getCommonInfoWithHabits(): LiveData<DataState<EditCycleViewState>> {
         return object : DataSourceManager<EditCycleViewState>() {
             override suspend fun loadFromCache() {
@@ -184,7 +246,7 @@ constructor(
                     )
                 )
                 if (habits.isNotEmpty()) {
-                    viewState.habitListFields.habitList = habits
+                    viewState.habitListFields.habitList = habits as ArrayList<Habit>
                 }
                 onCompleteJob(DataState.data(viewState, null))
             }

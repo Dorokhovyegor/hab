@@ -12,5 +12,5 @@ data class CycleInfoFields(
 )
 
 data class HabitListFields(
-    var habitList: List<Habit> = ArrayList()
+    var habitList: ArrayList<Habit> = ArrayList()
 )

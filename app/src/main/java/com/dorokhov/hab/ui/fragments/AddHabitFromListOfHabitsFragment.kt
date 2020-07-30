@@ -8,6 +8,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dorokhov.hab.R
+import com.dorokhov.hab.percistance.entities.Habit
 import com.dorokhov.hab.ui.adapters.HabitRecyclerViewAdapter
 import com.dorokhov.hab.ui.adapters.OnHabitClickListener
 import com.dorokhov.hab.ui.fragments.datastate.ViewHabitStateEvent
@@ -44,7 +45,7 @@ class AddHabitFromListOfHabitsFragment : BaseFragment(), OnHabitClickListener {
 
         habitListViewModel.viewState.observe(viewLifecycleOwner, Observer {viewState ->
             val adapterRecView = HabitRecyclerViewAdapter(this)
-            adapterRecView.setHabits(viewState.habitFields.habits)
+            adapterRecView.setHabits(viewState.habitFields.habits as ArrayList<Habit>)
             habitsRecyclerView?.apply {
                 layoutManager = LinearLayoutManager(context)
                 adapter = adapterRecView
@@ -53,7 +54,7 @@ class AddHabitFromListOfHabitsFragment : BaseFragment(), OnHabitClickListener {
     }
 
     override fun onHabitClick(id: Int?) {
-        
+
     }
 
     override fun showLoadingState(visible: Boolean) {
