@@ -11,6 +11,11 @@ interface CommonDao {
     @Query("SELECT * From Cycle")
     suspend fun getHabitsInCurrentCycle(): List<CycleWithHabits>
 
+    @Query("""
+        DELETE From Cycle where Cycle.cycleId = 0
+    """)
+    suspend fun resetCycle(): Int
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertNewCycle(cycle: Cycle): Long
 

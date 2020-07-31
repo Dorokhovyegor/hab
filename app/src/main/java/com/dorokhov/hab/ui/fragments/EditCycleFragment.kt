@@ -92,6 +92,10 @@ class EditCycleFragment : BaseFragment() {
             editCycleViewModel.setStateEvent(EditCycleStateEvent.SaveName(nameEditText.text.toString()))
             true
         }
+        R.id.deleteCycle -> {
+            editCycleViewModel.setStateEvent(EditCycleStateEvent.ResetCycle())
+            true
+        }
         else -> {
             false
         }

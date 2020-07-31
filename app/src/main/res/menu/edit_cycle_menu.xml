@@ -5,4 +5,9 @@
         app:showAsAction="always"
         android:title="@string/menu_create_cycle"
         android:icon="@drawable/ic_check"/>
+
+    <item android:id="@+id/deleteCycle"
+        app:showAsAction="never"
+        android:title="@string/menu_delete_cycle"
+        android:icon="@drawable/ic_baseline_delete_forever_24"/>
 </menu>

@@ -45,7 +45,7 @@ constructor(
                 cycleRepository.deleteHabit(it.habitId)
             }
             is EditCycleStateEvent.ResetCycle -> {
-                liveData { }
+                cycleRepository.resetCycle()
             }
             is EditCycleStateEvent.None -> {
                 liveData { }

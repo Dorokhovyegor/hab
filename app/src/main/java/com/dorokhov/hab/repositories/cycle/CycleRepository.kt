@@ -182,11 +182,15 @@ constructor(
                         )
                     )
                 } else {
-                    onCompleteJob(DataState.error(Response(
-                        ErrorCodes.UNKNOWN_ERROR,
-                        "Не удалось удалить",
-                        ResponseType.Toast()
-                    )))
+                    onCompleteJob(
+                        DataState.error(
+                            Response(
+                                ErrorCodes.UNKNOWN_ERROR,
+                                "Не удалось удалить",
+                                ResponseType.Toast()
+                            )
+                        )
+                    )
                 }
             }
 
@@ -253,6 +257,26 @@ constructor(
 
             override fun setJob(job: Job) {
                 addJob("getCommonInfoWithHabits", job)
+            }
+        }.asLiveData()
+    }
+
+    @InternalCoroutinesApi
+    fun resetCycle(): LiveData<DataState<EditCycleViewState>> {
+        return object : DataSourceManager<EditCycleViewState>() {
+            override suspend fun loadFromCache() {
+                val result = commonDao.resetCycle()
+                Logger.loge(result)
+                onCompleteJob(
+                    DataState.data(
+                        null,
+                        Response(SUCCESS, "Цикл успешно удален", ResponseType.Toast())
+                    )
+                )
+            }
+
+            override fun setJob(job: Job) {
+                addJob("resetCycle", job)
             }
         }.asLiveData()
     }
