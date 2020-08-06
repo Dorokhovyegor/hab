@@ -33,6 +33,11 @@ abstract class ViewModelModule {
     @Binds
     @IntoMap
     @ViewModelKey(EditCycleViewModel::class)
-    abstract fun bindViewEditCycleViewModel(viewProgressViewModel: EditCycleViewModel): ViewModel
+    abstract fun bindViewEditCycleViewModel(editCycleViewModel: EditCycleViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(ReasonViewModel::class)
+    abstract fun bindViewReasonViewModel(reasonViewModel: ReasonViewModel): ViewModel
 
 }

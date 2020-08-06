@@ -59,4 +59,11 @@ interface CommonDao {
     """
     )
     suspend fun getAllDaysForCurrentCycle(): List<Day>
+
+    @Query(
+        """
+            UPDATE Day SET noteText = :note where dayId =:dayId
+        """
+    )
+    suspend fun addNoteTextIntoFailureDay(dayId: Int, note: String): Int
 }

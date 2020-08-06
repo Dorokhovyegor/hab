@@ -8,5 +8,6 @@ object ErrorCodes {
     const val CANT_INSERT_HABIT_TO_DB = 3
     const val CANT_UPDATE_TASK_STATUS = 4
     const val CANT_UPDATE_CYCLE_NAME = 5
+    const val CANT_INSERT_NOTE = 6
 
 }

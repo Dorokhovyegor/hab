@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_viewProgressFragment_to_editCycleFragment"
             app:destination="@id/editCycleFragment" />
+        <action
+            android:id="@+id/action_viewProgressFragment_to_reasonFragment"
+            app:destination="@id/reasonFragment" />
     </fragment>
     <fragment
         android:id="@+id/createNewCycleFragment"
@@ -51,4 +54,8 @@
         android:id="@+id/editHabitFragment"
         android:name="com.dorokhov.hab.ui.fragments.EditHabitFragment"
         android:label="EditHabitFragment" />
+    <fragment
+        android:id="@+id/reasonFragment"
+        android:name="com.dorokhov.hab.ui.fragments.ReasonFragment"
+        android:label="ReasonFragment" />
 </navigation>

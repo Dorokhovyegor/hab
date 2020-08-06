@@ -11,6 +11,7 @@ data class Day(
     val habitId: Int, // к какой привычке привязано
     val habitName: String,
     val date: String, // текущая дата
+    val noteText: String?,
     val result: Int // итог как прошел день
 )
 

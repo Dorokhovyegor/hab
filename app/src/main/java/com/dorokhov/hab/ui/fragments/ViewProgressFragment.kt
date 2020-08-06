@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -20,7 +21,7 @@ import com.dorokhov.hab.utils.Logger
 import com.dorokhov.hab.utils.getCurrentDate
 import kotlinx.android.synthetic.main.view_progress_layout.*
 
-class ViewProgressFragment : BaseFragment(), TaskCheckListener {
+class ViewProgressFragment : BaseFragment(), TaskCheckListener, ClickOnNoteButtonListener {
 
     lateinit var viewProgressViewModel: ViewProgressViewModel
 
@@ -60,9 +61,13 @@ class ViewProgressFragment : BaseFragment(), TaskCheckListener {
             if (viewState.listOfTaskFields.taskList.isNotEmpty()) {
                 addNewCycle.hide()
                 listHabitsInCurrentDay.apply {
-                    adapter = TaskRecyclerViewAdapter(this@ViewProgressFragment).apply {
-                        taskList = viewState.listOfTaskFields.taskList
-                    }
+                    adapter = TaskRecyclerViewAdapter(
+                        this@ViewProgressFragment,
+                        this@ViewProgressFragment
+                    )
+                        .apply {
+                            taskList = viewState.listOfTaskFields.taskList
+                        }
                     layoutManager = LinearLayoutManager(context)
                 }
             }
@@ -96,6 +101,13 @@ class ViewProgressFragment : BaseFragment(), TaskCheckListener {
         viewProgressViewModel.setStateEvent(ViewProgressStateEvent.ChangeDayState(dayId, state))
     }
 
+    override fun navigateToNoteFragment(taskId: Int) {
+        findNavController().navigate(
+            R.id.action_viewProgressFragment_to_reasonFragment,
+            bundleOf("taskId" to taskId)
+        )
+    }
+
     companion object {
         const val UNCHECKED: Int = 0
         const val INDETERMINATE = 1
@@ -103,7 +115,11 @@ class ViewProgressFragment : BaseFragment(), TaskCheckListener {
     }
 }
 
-public interface TaskCheckListener {
+interface TaskCheckListener {
     fun onCheck(dayId: Int, state: Int)
+}
+
+interface ClickOnNoteButtonListener {
+    fun navigateToNoteFragment(taskId: Int)
 }
 

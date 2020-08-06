@@ -24,6 +24,7 @@ object DaysFactory {
                             habit.habitId!!,
                             habit.name,
                             currentDateInMilliseconds.toStringDate(),
+                            null,
                             -1
                         )
                     )
@@ -38,6 +39,7 @@ object DaysFactory {
                             habit.habitId!!,
                             habit.name,
                             currentDateInMilliseconds.toStringDate(),
+                            null,
                             -1
                         )
                     )
@@ -52,6 +54,7 @@ object DaysFactory {
                             habit.habitId!!,
                             habit.name,
                             currentDateInMilliseconds.toStringDate(),
+                            null,
                             -1
                         )
                     )
@@ -66,6 +69,7 @@ object DaysFactory {
                             habit.habitId!!,
                             habit.name,
                             currentDateInMilliseconds.toStringDate(),
+                            null,
                             -1
                         )
                     )
@@ -80,6 +84,7 @@ object DaysFactory {
                             habit.habitId!!,
                             habit.name,
                             currentDateInMilliseconds.toStringDate(),
+                            null,
                             -1
                         )
                     )
@@ -94,6 +99,7 @@ object DaysFactory {
                             habit.habitId!!,
                             habit.name,
                             currentDateInMilliseconds.toStringDate(),
+                            null,
                             -1
                         )
                     )
@@ -108,6 +114,7 @@ object DaysFactory {
                             habit.habitId!!,
                             habit.name,
                             currentDateInMilliseconds.toStringDate(),
+                            null,
                             -1
                         )
                     )
