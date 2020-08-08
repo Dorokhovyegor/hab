@@ -8,9 +8,7 @@ data class ViewProgressViewState(
 )
 
 data class CommonProgressFields(
-    var nameOfTheCycle: String = "",
-    var daysToTheEndOfTheCycle: String = "",
-    var amountOfHabits: String = ""
+    var nameOfTheCycle: String? = null
 )
 
 data class ListOfTaskFields(

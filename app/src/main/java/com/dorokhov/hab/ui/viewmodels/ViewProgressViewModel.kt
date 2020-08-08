@@ -38,18 +38,6 @@ constructor(
         }
     }
 
-    fun setCommonCycleInfo(commonProgressFields: CommonProgressFields) {
-        val update = getCurrentNewStateOrNew()
-        update.commonProgressFields = commonProgressFields
-        setViewState(update)
-    }
-
-    fun setTaskList(task: List<Day>) {
-        val update = getCurrentNewStateOrNew()
-        update.listOfTaskFields.taskList = task
-        setViewState(update)
-    }
-
     fun cancelActiveJobs() {
         cycleRepository.cancelActiveJobs()
         handlePendingData()

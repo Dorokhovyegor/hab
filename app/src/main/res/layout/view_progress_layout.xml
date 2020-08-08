@@ -18,197 +18,54 @@
         app:mpb_showProgressBackground="false"
         app:mpb_useIntrinsicPadding="false" />
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/progressContainer"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        app:cardBackgroundColor="@android:color/white"
-        app:cardElevation="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:id="@+id/nameCycle"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="16dp"
-                android:layout_marginTop="16dp"
-                android:ellipsize="end"
-                android:lines="1"
-                android:textColor="#000"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/amountOfHabits"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="16dp"
-                android:layout_marginTop="2dp"
-                android:textSize="10sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/nameCycle" />
-
-            <TextView
-                android:id="@+id/daysToEnd"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="16dp"
-                android:layout_marginTop="2dp"
-                android:textSize="10sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/amountOfHabits" />
-
-
-            <GridLayout
-                android:id="@+id/indicatorDayContainer"
-                android:layout_width="wrap_content"
-                android:layout_height="45dp"
-                android:layout_marginHorizontal="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
-                android:columnCount="7"
-                android:rowCount="2"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/daysToEnd">
-
-                <com.dorokhov.cycleprogress.CycleProgressView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingStart="4dp"
-                    app:checkType="completed"
-                    app:sizeInDp="20dp" />
-
-                <com.dorokhov.cycleprogress.CycleProgressView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingStart="4dp"
-                    app:checkType="completed"
-                    app:sizeInDp="20dp" />
-
-                <com.dorokhov.cycleprogress.CycleProgressView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingStart="4dp"
-                    app:checkType="completed"
-                    app:sizeInDp="20dp" />
-
-                <com.dorokhov.cycleprogress.CycleProgressView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingStart="4dp"
-                    app:checkType="notFullCompleted"
-                    app:sizeInDp="20dp" />
-
-                <com.dorokhov.cycleprogress.CycleProgressView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingStart="4dp"
-                    app:checkType="completed"
-                    app:sizeInDp="20dp" />
-
-                <com.dorokhov.cycleprogress.CycleProgressView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingStart="4dp"
-                    app:checkType="failure"
-                    app:sizeInDp="20dp" />
-
-                <com.dorokhov.cycleprogress.CycleProgressView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingStart="4dp"
-                    app:checkType="completed"
-                    app:sizeInDp="20dp" />
-
-                <com.dorokhov.cycleprogress.CycleProgressView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingStart="4dp"
-                    app:checkType="completed"
-                    app:sizeInDp="20dp" />
-
-                <com.dorokhov.cycleprogress.CycleProgressView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingStart="4dp"
-                    app:checkType="completed"
-                    app:sizeInDp="20dp" />
-
-                <com.dorokhov.cycleprogress.CycleProgressView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingStart="4dp"
-                    app:checkType="unchecked"
-                    app:sizeInDp="20dp" />
-
-                <com.dorokhov.cycleprogress.CycleProgressView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingStart="4dp"
-                    app:checkType="unchecked"
-                    app:sizeInDp="20dp" />
-
-                <com.dorokhov.cycleprogress.CycleProgressView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingStart="4dp"
-                    app:checkType="unchecked"
-                    app:sizeInDp="20dp" />
-
-                <com.dorokhov.cycleprogress.CycleProgressView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingStart="4dp"
-                    app:checkType="unchecked"
-                    app:sizeInDp="20dp" />
-
-                <com.dorokhov.cycleprogress.CycleProgressView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingStart="4dp"
-                    app:checkType="unchecked"
-                    app:sizeInDp="20dp" />
-
-            </GridLayout>
-
-            <ImageButton
-                android:id="@+id/editCycle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@null"
-                android:padding="16dp"
-                android:src="@drawable/ic_edit"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </com.google.android.material.card.MaterialCardView>
-
     <TextView
-        android:layout_marginTop="24dp"
+        android:id="@+id/nameCycle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="16dp"
+        android:ellipsize="end"
+        android:lines="1"
+        android:textColor="#000"
         android:textSize="18sp"
         android:textStyle="bold"
-        android:text="Ваши задания на сегодня:"
-        android:layout_marginHorizontal="24dp"
+        app:layout_constraintEnd_toStartOf="@id/viewLogs"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/viewLogs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:padding="16dp"
+        android:src="@drawable/ic_baseline_receipt_24"
+        android:tint="@color/black"
+        app:layout_constraintEnd_toStartOf="@id/editCycle"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <ImageButton
+        android:id="@+id/editCycle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:padding="16dp"
+        android:src="@drawable/ic_edit"
+        android:tint="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
         android:id="@+id/titleTextView"
-        android:textColor="@color/black"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/progressContainer" />
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginTop="24dp"
+        android:text="Ваши задания на сегодня:"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        app:layout_constraintTop_toBottomOf="@id/nameCycle" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/listHabitsInCurrentDay"

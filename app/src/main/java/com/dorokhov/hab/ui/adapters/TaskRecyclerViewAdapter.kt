@@ -8,9 +8,10 @@ import com.dorokhov.hab.R
 import com.dorokhov.hab.percistance.entities.Day
 import com.dorokhov.hab.ui.fragments.ClickOnNoteButtonListener
 import com.dorokhov.hab.ui.fragments.TaskCheckListener
+import com.dorokhov.hab.ui.fragments.ViewProgressFragment
 import com.dorokhov.hab.ui.fragments.ViewProgressFragment.Companion.CHECKED
-import com.dorokhov.hab.ui.fragments.ViewProgressFragment.Companion.INDETERMINATE
 import com.dorokhov.hab.ui.fragments.ViewProgressFragment.Companion.UNCHECKED
+import com.dorokhov.hab.utils.isVisible
 import com.dorokhov.hab.utils.visible
 import kotlinx.android.synthetic.main.task_item_layout.view.*
 
@@ -61,41 +62,29 @@ class TaskRecyclerViewAdapter(
         val writeNoteButtonListener: ClickOnNoteButtonListener
     ) : RecyclerView.ViewHolder(view) {
         fun bind(day: Day) = with(itemView) {
-            addReason.setOnClickListener {
-                day.dayId?.let { it1 -> writeNoteButtonListener.navigateToNoteFragment(it1) }
+            stateHabImageView.setOnClickListener {
+                if (checkContainer.isVisible()) {
+                    checkContainer.visible(false)
+                } else {
+                    checkContainer.visible(true)
+                }
             }
             habName.text = day.habitName
-            when (day.result) {
-                UNCHECKED -> {
-                    habState.setChecked(false, false)
-                    addReason.visible(true)
-                    descriptionText.visible(true)
-
-                }
-                INDETERMINATE -> {
-                    habState.setChecked(true, true)
-                    addReason.visible(true)
-                    descriptionText.visible(true)
-                }
-                CHECKED -> {
-                    habState.setChecked(true, false)
-                    addReason.visible(false)
-                    descriptionText.visible(false)
+            checkButton.setOnClickListener {
+                day.dayId?.let { it1 ->
+                    taskCheckListener.onCheck(it1, CHECKED)
                 }
             }
-
-            habState.setChecked(day.result == CHECKED, day.result == INDETERMINATE)
-            habState.setOnClickListener {
-                when {
-                    !habState.isChecked && !habState.isIndeterminate -> {
-                        taskCheckListener.onCheck(day.dayId!!, UNCHECKED)
-                    }
-                    habState.isIndeterminate -> {
-                        taskCheckListener.onCheck(day.dayId!!, INDETERMINATE)
-                    }
-                    habState.isChecked -> {
-                        taskCheckListener.onCheck(day.dayId!!, CHECKED)
-                    }
+            failButton.setOnClickListener {
+                day.dayId?.let { it1 ->
+                    taskCheckListener.onCheck(it1, UNCHECKED)
+                    writeNoteButtonListener.navigateToNoteFragment(it1)
+                }
+            }
+            skipButton.setOnClickListener {
+                day.dayId?.let { it1 ->
+                    taskCheckListener.onCheck(it1, ViewProgressFragment.INDETERMINATE)
+                    writeNoteButtonListener.navigateToNoteFragment(it1)
                 }
             }
         }

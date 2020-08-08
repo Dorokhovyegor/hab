@@ -15,12 +15,12 @@
         android:background="@drawable/task_background_drawable">
 
         <ImageView
-            app:layout_constraintTop_toTopOf="parent"
+            android:layout_width="3dp"
+            android:layout_height="0dp"
+            android:background="@color/colorSecondary"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_width="3dp"
-            android:background="@color/colorSecondary"
-            android:layout_height="0dp"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/habName"
@@ -39,41 +39,56 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0" />
 
-        <it.sephiroth.android.library.checkbox3state.CheckBox3
-            android:id="@+id/habState"
-            style="@style/Sephiroth.Widget.Checkbox3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:sephiroth_checkbox3_indeterminate="true"
-            android:checked="false"
-            android:layout_marginEnd="16dp"
-            app:layout_constraintVertical_bias="0.2"
-            app:layout_constraintBottom_toBottomOf="parent"
+        <ImageView
+            android:id="@+id/stateHabImageView"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:tint="@color/black"
+            android:src="@drawable/ic_baseline_keyboard_arrow_down_24"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintBottom_toBottomOf="@id/habName"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="@id/habName" />
 
-        <Button
-            android:id="@+id/addReason"
-            style="@style/MaterialButton"
-            android:layout_width="150dp"
+        <LinearLayout
+            android:id="@+id/checkContainer"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:text="Добавить заметку"
-            app:layout_constraintTop_toBottomOf="@id/habName"
+            android:layout_marginTop="4dp"
+            android:visibility="gone"
+            android:background="@color/colorSecondary08"
+            android:orientation="horizontal"
+            android:weightSum="3"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/habName">
 
-        <TextView
-            android:id="@+id/descriptionText"
-            android:text="Необходимо добавить заметку у невыполненном задании"
-            app:layout_constraintTop_toBottomOf="@id/habName"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_margin="16dp"
-            app:layout_constraintEnd_toStartOf="@id/addReason"
-            android:layout_width="0dp"
-            android:layout_height="0dp"/>
+            <ImageButton
+                android:id="@+id/checkButton"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:background="@null"
+                android:src="@drawable/ic_check"
+                android:tint="@color/black" />
 
+            <ImageButton
+                android:id="@+id/failButton"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:background="@null"
+                android:src="@drawable/ic_failure"
+                android:tint="@color/black" />
+
+            <ImageButton
+                android:id="@+id/skipButton"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:background="@null"
+                android:src="@drawable/ic_baseline_redo_24"
+                android:tint="@color/black" />
+        </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>
 

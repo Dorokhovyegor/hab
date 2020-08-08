@@ -10,6 +10,7 @@ import com.dorokhov.hab.repositories.JobManager
 import com.dorokhov.hab.ui.DataState
 import com.dorokhov.hab.ui.Response
 import com.dorokhov.hab.ui.ResponseType
+import com.dorokhov.hab.ui.fragments.ViewProgressFragment
 import com.dorokhov.hab.ui.fragments.datastate.createcycle.CreateCycleViewState
 import com.dorokhov.hab.ui.fragments.datastate.editcycle.EditCycleViewState
 import com.dorokhov.hab.ui.fragments.datastate.viewprogress.CommonProgressFields
@@ -76,15 +77,14 @@ constructor(
             override suspend fun loadFromCache() {
                 val cycle = commonDao.getCycle()
                 cycle?.let { cycleInfo ->
-                    val habitList = commonDao.getHabitsInCurrentCycle()
-                    val taskList = commonDao.getAllDays(date)
+                    val taskList = commonDao.getAllDays(date).takeLastWhile {
+                        it.result != ViewProgressFragment.CHECKED
+                    }
                     Logger.loge(taskList)
                     val viewState = ViewProgressViewState()
                     viewState.commonProgressFields =
                         CommonProgressFields(
-                            cycleInfo.name,
-                            "",
-                            habitList.size.toString()
+                            cycleInfo.name
                         )
                     viewState.listOfTaskFields.taskList = taskList
                     onCompleteJob(DataState.data(viewState, null))
@@ -170,7 +170,7 @@ constructor(
         return object : DataSourceManager<EditCycleViewState>() {
             override suspend fun loadFromCache() {
                 val deleteResult = habitDao.deleteHabitWithId(habitId)
-                val deleteDays = habitDao.deleteDaysFromHabit(habitId)
+                habitDao.deleteDaysFromHabit(habitId)
                 if (deleteResult >= 0) {
                     onCompleteJob(
                         DataState.data(

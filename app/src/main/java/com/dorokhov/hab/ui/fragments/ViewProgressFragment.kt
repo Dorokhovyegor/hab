@@ -19,6 +19,7 @@ import com.dorokhov.hab.ui.viewmodels.ViewProgressViewModel
 import com.dorokhov.hab.utils.ErrorCodes
 import com.dorokhov.hab.utils.Logger
 import com.dorokhov.hab.utils.getCurrentDate
+import com.dorokhov.hab.utils.visible
 import kotlinx.android.synthetic.main.view_progress_layout.*
 
 class ViewProgressFragment : BaseFragment(), TaskCheckListener, ClickOnNoteButtonListener {
@@ -72,6 +73,7 @@ class ViewProgressFragment : BaseFragment(), TaskCheckListener, ClickOnNoteButto
                 }
             }
             attemptToSetContent(viewState.commonProgressFields)
+
         })
     }
 
@@ -87,9 +89,10 @@ class ViewProgressFragment : BaseFragment(), TaskCheckListener, ClickOnNoteButto
     }
 
     private fun attemptToSetContent(commonInfo: CommonProgressFields) {
-        nameCycle.text = commonInfo.nameOfTheCycle
-        amountOfHabits.text = commonInfo.amountOfHabits
-        daysToEnd.text = commonInfo.daysToTheEndOfTheCycle
+        commonInfo.nameOfTheCycle?.let {
+            editCycle.visible(true)
+            nameCycle.text = it
+        } ?: editCycle.visible(false)
     }
 
     override fun showLoadingState(visible: Boolean) {
@@ -110,8 +113,8 @@ class ViewProgressFragment : BaseFragment(), TaskCheckListener, ClickOnNoteButto
 
     companion object {
         const val UNCHECKED: Int = 0
-        const val INDETERMINATE = 1
-        const val CHECKED = 2
+        const val INDETERMINATE: Int = 1
+        const val CHECKED: Int = 2
     }
 }
 
